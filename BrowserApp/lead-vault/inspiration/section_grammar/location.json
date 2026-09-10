@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "section_type": "location",
+  "moves": [
+    {
+      "key": "local_service_area_band",
+      "best_for": ["plumber", "roofer", "hvac", "electrician", "auto-repair", "general-contractor"],
+      "requires": [],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["location_heading", "city_area", "service_area_note", "contact_cta"],
+      "layout_notes": ["Make city or service area visible before the footer.", "Avoid fake map embeds."],
+      "conversion_notes": ["Tell visitors whether the business serves their area."],
+      "avoid": ["Inventing addresses or service towns"]
+    },
+    {
+      "key": "visit_hours_contact_panel",
+      "best_for": ["restaurant", "cafe-bakery", "dentist", "chiropractor", "salon-hair", "barber"],
+      "requires": [],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["address_or_area", "hours_note", "phone", "email", "cta"],
+      "layout_notes": ["Group visit details in one easy-to-scan panel.", "Use only captured address or hours facts."],
+      "conversion_notes": ["Support visitors ready to call, book, or visit."],
+      "avoid": ["Invented hours"]
+    }
+  ]
+}

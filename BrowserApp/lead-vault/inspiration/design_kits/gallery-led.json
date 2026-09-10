@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "key": "gallery-led",
+  "label": "Gallery Led",
+  "best_for": ["landscaper", "salon-hair", "barber", "restaurant", "restaurant-upscale", "cafe-bakery", "fitness-gym", "yoga-studio"],
+  "visual_principles": [
+    "Let imagery and finished work drive the first impression.",
+    "Use asymmetry and editorial pacing to avoid repeated cards.",
+    "Keep conversion controls visible without overwhelming the visuals."
+  ],
+  "typography": {
+    "display": "expressive but readable display face",
+    "body": "warm sans",
+    "tone": "visual, inviting, concrete"
+  },
+  "spacing": {
+    "density": "varied",
+    "section_padding": "generous around images",
+    "card_radius": "small"
+  },
+  "imagery": {
+    "priority": "portfolio, menu, project, environment, result-focused photography",
+    "fallback": "large color fields with texture"
+  },
+  "cta_rules": [
+    "Use book, view menu, request quote, or schedule language by category.",
+    "Place a CTA near each major visual proof area.",
+    "Never imply photos show real work unless scraped photos support it."
+  ],
+  "section_rhythm": ["hero", "gallery", "services", "proof", "conversion", "location", "footer"],
+  "avoid": [
+    "All-text hero when photos exist",
+    "Identical three-card service grids",
+    "Fake portfolio claims"
+  ]
+}

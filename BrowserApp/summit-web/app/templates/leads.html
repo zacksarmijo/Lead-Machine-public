@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block title %}Leads - Summit Digital Solutions{% endblock %}
+{% block page_title %}Leads{% endblock %}
+{% block topbar_actions %}
+<button class="btn btn-secondary btn-sm" onclick="createTodayShortlist()">Today's Shortlist</button>
+<button class="btn btn-secondary btn-sm" onclick="exportLeads()">Export CSV</button>
+{% endblock %}
+
+{% block content %}
+<div class="filter-bar" id="filterBar">
+  <input type="text" class="form-input search-input" id="searchInput" placeholder="Search leads...">
+  <select class="form-select" id="scanFilter"><option value="">All scans</option></select>
+  <button class="btn btn-danger btn-sm" id="deleteScanBtn" onclick="deleteScan()" style="display:none;" title="Delete this scan">Delete Scan</button>
+  <select class="form-select" id="viewFilter">
+    <option value="All leads">All leads</option>
+    <option value="Actionable only">Actionable only</option>
+    <option value="Ready to contact">Ready to contact</option>
+    <option value="High confidence">High confidence</option>
+    <option value="Promising">Promising</option>
+    <option value="Needs review">Needs review</option>
+    <option value="Approved">Approved</option>
+    <option value="Outreach-ready">Outreach-ready</option>
+    <option value="Contacted">Contacted</option>
+    <option value="Do not contact">Do not contact</option>
+    <option value="Archived">Archived</option>
+  </select>
+  <select class="form-select" id="poolFilter">
+    <option value="">All pools</option>
+    <option value="pinned">Pinned Leads</option>
+  </select>
+  <button class="btn btn-secondary btn-sm" id="recheckPinnedBtn" onclick="recheckPinned()" style="display:none;" title="Recheck all pinned leads">Recheck Pinned</button>
+  <button class="btn btn-secondary btn-sm" id="clearFiltersBtn" onclick="clearAllFilters()" style="display:none;" title="Reset all filters, search, and sort">Clear Filters</button>
+</div>
+
+<div class="bulk-bar" id="bulkBar">
+  <span id="bulkCount">0 selected</span>
+  <select id="bulkPipeline">
+    <option value="">Set pipeline...</option>
+    <option>Needs review</option><option>Approved</option><option>Outreach-ready</option>
+    <option>Contacted</option><option>Responded</option><option>Do not contact</option><option>Archived</option>
+  </select>
+  <button class="btn btn-sm" onclick="applyBulkPipeline()">Apply</button>
+  <select id="bulkSignal">
+    <option value="">Set signal...</option>
+    <option>No go</option><option>In contact</option><option>Won site</option>
+  </select>
+  <button class="btn btn-sm" onclick="applyBulkSignal()">Apply</button>
+  <button class="btn btn-sm" onclick="pinSelected()">&#128204; Pin</button>
+  <button class="btn btn-sm" onclick="unpinSelected()">Unpin</button>
+  <button class="btn btn-sm" onclick="batchAgentReviewSelected()">Agent Review</button>
+  <button class="btn btn-sm btn-bulk-delete" onclick="deleteSelected()">Delete</button>
+  <button class="btn btn-sm" onclick="clearSelection()">Clear</button>
+</div>
+
+<div class="card">
+  <div class="card-body-flush table-container">
+    <table class="data-table" id="leadsTable">
+      <thead>
+        <tr>
+          <th class="col-checkbox"><input type="checkbox" id="selectAll"></th>
+          <th class="sortable" data-col="name" onclick="toggleSort('name')">
+            <span class="th-content">Business <span class="sort-arrow"></span></span>
+          </th>
+          <th class="sortable" data-col="city" onclick="toggleSort('city')">
+            <span class="th-content">City <span class="sort-arrow"></span></span>
+          </th>
+          <th class="sortable" data-col="opportunity" onclick="toggleSort('opportunity')">
+            <span class="th-content">Opp <span class="sort-arrow"></span></span>
+          </th>
+          <th class="sortable" data-col="score" onclick="toggleSort('score')">
+            <span class="th-content">Score <span class="sort-arrow"></span></span>
+          </th>
+          <th class="sortable filterable" data-col="review">
+            <span class="th-content" onclick="toggleSort('review')">Review <span class="sort-arrow"></span></span>
+            <button class="col-filter-btn" onclick="event.stopPropagation(); toggleColFilter('review', this)">&#9662;</button>
+          </th>
+          <th class="sortable filterable" data-col="webStatus">
+            <span class="th-content" onclick="toggleSort('webStatus')">Web <span class="sort-arrow"></span></span>
+            <button class="col-filter-btn" onclick="event.stopPropagation(); toggleColFilter('webStatus', this)">&#9662;</button>
+          </th>
+          <th class="sortable filterable" data-col="techStack">
+            <span class="th-content" onclick="toggleSort('techStack')">Tech <span class="sort-arrow"></span></span>
+            <button class="col-filter-btn" onclick="event.stopPropagation(); toggleColFilter('techStack', this)">&#9662;</button>
+          </th>
+          <th class="sortable" data-col="confidence" onclick="toggleSort('confidence')">
+            <span class="th-content">Confidence <span class="sort-arrow"></span></span>
+          </th>
+          <th class="sortable filterable" data-col="freshness">
+            <span class="th-content" onclick="toggleSort('freshness')">Evidence Freshness <span class="sort-arrow"></span></span>
+            <button class="col-filter-btn" onclick="event.stopPropagation(); toggleColFilter('freshness', this)">&#9662;</button>
+          </th>
+          <th>Sources Checked</th>
+          <th>Why Surfaced</th>
+          <th>Why Suppressed</th>
+          <th>Next Best Action</th>
+          <th class="sortable filterable" data-col="pipeline">
+            <span class="th-content" onclick="toggleSort('pipeline')">Status <span class="sort-arrow"></span></span>
+            <button class="col-filter-btn" onclick="event.stopPropagation(); toggleColFilter('pipeline', this)">&#9662;</button>
+          </th>
+          <th class="sortable filterable" data-col="contact">
+            <span class="th-content" onclick="toggleSort('contact')">Contact <span class="sort-arrow"></span></span>
+            <button class="col-filter-btn" onclick="event.stopPropagation(); toggleColFilter('contact', this)">&#9662;</button>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="leadsBody">
+        <tr><td colspan="16"><div class="loading-overlay"><span class="spinner"></span> Loading leads...</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="flex justify-between items-center mt-md">
+  <span class="text-muted text-sm" id="leadCount"></span>
+</div>
+
+<!-- Column filter dropdown -->
+<div class="col-filter-dropdown" id="colFilterDropdown"></div>
+
+<!-- Delete confirmation modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal-box">
+    <div class="modal-title">Delete Leads</div>
+    <p class="modal-text" id="deleteModalText">Are you sure you want to delete the selected leads? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary btn-sm" onclick="closeDeleteModal()">Cancel</button>
+      <button class="btn btn-danger btn-sm" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/leads.js?v=12"></script>
+{% endblock %}

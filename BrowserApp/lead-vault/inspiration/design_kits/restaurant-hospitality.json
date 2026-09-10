@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "key": "restaurant-hospitality",
+  "label": "Restaurant Hospitality",
+  "best_for": ["restaurant", "restaurant-upscale", "cafe-bakery"],
+  "visual_principles": [
+    "Make the food, menu, hours, and location easy to act on.",
+    "Use atmosphere and menu structure instead of generic service cards.",
+    "Keep reservation, order, or visit CTAs close to visual content."
+  ],
+  "typography": {
+    "display": "hospitality display face",
+    "body": "warm readable sans",
+    "tone": "sensory, specific, welcoming"
+  },
+  "spacing": {
+    "density": "varied",
+    "section_padding": "medium",
+    "card_radius": "small"
+  },
+  "imagery": {
+    "priority": "food, interior, storefront, menu items, hospitality moments",
+    "fallback": "warm textured composition"
+  },
+  "cta_rules": [
+    "Use view menu, reserve, order, or visit language.",
+    "Show hours and location before the footer when available.",
+    "Do not invent menu items or prices."
+  ],
+  "section_rhythm": ["hero", "gallery", "pricing", "trust", "location", "conversion", "footer"],
+  "avoid": [
+    "Generic services sections",
+    "Fake dish names",
+    "Hidden hours or address"
+  ]
+}

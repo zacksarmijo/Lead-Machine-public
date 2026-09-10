@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "section_type": "services",
+  "moves": [
+    {
+      "key": "prioritized_service_list",
+      "best_for": ["plumber", "roofer", "hvac", "electrician", "auto-repair", "general-contractor"],
+      "requires": ["services"],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["section_heading", "service_items", "service_summary", "service_cta"],
+      "layout_notes": ["Lead with the most commercially useful services.", "Use varied row or feature-list composition before any card grid."],
+      "conversion_notes": ["Connect each service group to the primary CTA."],
+      "avoid": ["More than one repeated three-card grid"]
+    },
+    {
+      "key": "menu_or_offering_showcase",
+      "best_for": ["restaurant", "cafe-bakery", "salon-hair", "barber", "fitness-gym", "yoga-studio"],
+      "requires": ["services"],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["section_heading", "offering_groups", "details", "cta"],
+      "layout_notes": ["Treat services as offerings, menu items, classes, or appointments as appropriate.", "Use scannable groups."],
+      "conversion_notes": ["Move visitors toward booking, menu viewing, ordering, or visiting."],
+      "avoid": ["Calling hospitality menu content generic services"]
+    },
+    {
+      "key": "practice_area_explainer",
+      "best_for": ["law-firm", "professional-services", "realtor", "dentist", "chiropractor", "medspa"],
+      "requires": ["services"],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["section_heading", "expertise_items", "decision_notes", "cta"],
+      "layout_notes": ["Explain service fit and next step without overpromising.", "Use proof or locality near service explanations."],
+      "conversion_notes": ["Encourage consultation, appointment, or contact."],
+      "avoid": ["Unsupported guarantees"]
+    }
+  ]
+}

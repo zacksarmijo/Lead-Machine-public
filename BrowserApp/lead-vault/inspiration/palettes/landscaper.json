@@ -1,0 +1,15 @@
+{
+  "name": "landscaper",
+  "primary": "#2D4A2B",
+  "accent": "#C08552",
+  "bg": "#FBFAF6",
+  "surface": "#EDEBE2",
+  "text": "#1C2A1A",
+  "muted": "#5F6B57",
+  "border": "#D4D0BE",
+  "success": "#4A7C3A",
+  "warning": "#B45309",
+  "font_display": "Fraunces",
+  "font_body": "Inter",
+  "notes": "Deep moss green + terracotta. Organic and craft-oriented. Earthy but not muddy. Display serif with organic letterforms suits visual-first portfolios."
+}

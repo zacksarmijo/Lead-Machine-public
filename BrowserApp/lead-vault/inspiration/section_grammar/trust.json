@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "section_type": "trust",
+  "moves": [
+    {
+      "key": "above_fold_trust_row",
+      "best_for": ["plumber", "roofer", "hvac", "electrician", "dentist", "law-firm"],
+      "requires": [],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["trust_items", "service_area", "contact_signal"],
+      "layout_notes": ["Use short factual trust signals near the hero.", "Prefer scraped facts over generic badges."],
+      "conversion_notes": ["Reduce anxiety before the first CTA click."],
+      "avoid": ["Invented star ratings", "Invented years in business"]
+    },
+    {
+      "key": "process_reassurance",
+      "best_for": ["healthcare", "dentist", "chiropractor", "medspa", "professional-services"],
+      "requires": [],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["step_list", "appointment_note", "care_note"],
+      "layout_notes": ["Explain what happens next in three concise steps.", "Use calm support text."],
+      "conversion_notes": ["Make the first contact feel low-friction."],
+      "avoid": ["Medical outcome promises", "Legal outcome promises"]
+    }
+  ]
+}

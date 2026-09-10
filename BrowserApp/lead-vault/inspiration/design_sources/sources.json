@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "key": "marketingskills",
+      "name": "Marketing Skills",
+      "repo_url": "https://github.com/coreyhaines31/marketingskills",
+      "license": "MIT",
+      "role": "Marketing strategy and conversion heuristics",
+      "direct_code_import_allowed": false,
+      "prompt_url_allowed": false,
+      "usage_notes": [
+        "Use concepts as deterministic strategy rules.",
+        "Do not create a runtime dependency on the source project."
+      ]
+    },
+    {
+      "key": "hyperui",
+      "name": "HyperUI",
+      "repo_url": "https://github.com/markmead/hyperui",
+      "license": "MIT",
+      "role": "HTML and Tailwind section pattern inspiration",
+      "direct_code_import_allowed": false,
+      "prompt_url_allowed": false,
+      "usage_notes": [
+        "Convert recurring section ideas into abstract grammar moves.",
+        "Do not pass copied component code to the model."
+      ]
+    },
+    {
+      "key": "tailark",
+      "name": "Tailark Blocks",
+      "repo_url": "https://github.com/tailark/blocks",
+      "license": "MIT",
+      "role": "Modern marketing block composition reference",
+      "direct_code_import_allowed": false,
+      "prompt_url_allowed": false,
+      "usage_notes": [
+        "Use as layout inspiration only.",
+        "Summarize ideas as composition notes."
+      ]
+    },
+    {
+      "key": "page-ui",
+      "name": "Page UI",
+      "repo_url": "https://github.com/PageAI-Pro/page-ui",
+      "license": "MIT",
+      "role": "Conversion-focused landing page section reference",
+      "direct_code_import_allowed": false,
+      "prompt_url_allowed": false,
+      "usage_notes": [
+        "Reference page rhythm and CTA density.",
+        "Do not import component markup."
+      ]
+    },
+    {
+      "key": "loopple-landings",
+      "name": "Loopple Landings",
+      "repo_url": "https://github.com/loopple/Landings",
+      "license": "MIT",
+      "role": "Local-business landing page structure reference",
+      "direct_code_import_allowed": false,
+      "prompt_url_allowed": false,
+      "usage_notes": [
+        "Use for broad section ordering ideas.",
+        "Keep generated output original."
+      ]
+    },
+    {
+      "key": "flowbite",
+      "name": "Flowbite",
+      "repo_url": "https://github.com/themesberg/flowbite",
+      "license": "MIT and commercial variants",
+      "role": "Forms, accordions, FAQ, nav, and cards reference",
+      "direct_code_import_allowed": false,
+      "prompt_url_allowed": false,
+      "usage_notes": [
+        "Review license for any future direct use.",
+        "For now, convert common UI behavior into abstract rules only."
+      ]
+    },
+    {
+      "key": "frontend-design-review",
+      "name": "Frontend Design Review",
+      "repo_url": "https://github.com/microsoft/skills",
+      "license": "MIT",
+      "role": "Design critique workflow inspiration",
+      "direct_code_import_allowed": false,
+      "prompt_url_allowed": false,
+      "usage_notes": [
+        "Use as a checklist style reference.",
+        "Keep local review rules deterministic."
+      ]
+    },
+    {
+      "key": "impeccable",
+      "name": "Impeccable",
+      "repo_url": "https://github.com/pbakaus/impeccable",
+      "license": "Apache-2.0",
+      "role": "AI design quality and anti-pattern reference",
+      "direct_code_import_allowed": false,
+      "prompt_url_allowed": false,
+      "usage_notes": [
+        "Translate broad quality heuristics into local review rules.",
+        "Do not copy rule text verbatim into prompts."
+      ]
+    }
+  ]
+}

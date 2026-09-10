@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Website Grading Parity Tests</title>
+<style>
+  body { font-family: monospace; background: #1a1a1a; color: #e5e5e5; padding: 24px; }
+  .pass { color: #22c55e; }
+  .fail { color: #ef4444; font-weight: bold; }
+  .section { margin-top: 16px; font-weight: bold; color: #f59e0b; }
+  #results { white-space: pre-wrap; line-height: 1.8; }
+</style>
+</head>
+<body>
+<h2>Website Grading Parity Tests</h2>
+<div id="results"></div>
+
+<!-- Stub shared utilities needed by website_grading.js -->
+<script>
+function esc(str) { return str == null ? '' : String(str); }
+function getPayload(lead) {
+  let data = lead.data || {};
+  if (typeof data === 'string') { try { data = JSON.parse(data); } catch { data = {}; } }
+  return data;
+}
+</script>
+<script src="../app/static/js/website_grading.js"></script>
+<script>
+const out = document.getElementById('results');
+let passed = 0, failed = 0;
+
+function assert(label, condition) {
+  if (condition) {
+    out.innerHTML += `<span class="pass">  PASS</span> ${label}\n`;
+    passed++;
+  } else {
+    out.innerHTML += `<span class="fail">  FAIL</span> ${label}\n`;
+    failed++;
+  }
+}
+
+function section(name) {
+  out.innerHTML += `\n<span class="section">${name}</span>\n`;
+}
+
+// ── Grade Scale: Backend 5-tier ─────────────────
+section('Grade Scale (backend 5-tier)');
+assert('80 => A', numericToGrade(80) === 'A');
+assert('100 => A', numericToGrade(100) === 'A');
+assert('79 => B', numericToGrade(79) === 'B');
+assert('60 => B', numericToGrade(60) === 'B');
+assert('59 => C', numericToGrade(59) === 'C');
+assert('40 => C', numericToGrade(40) === 'C');
+assert('39 => D', numericToGrade(39) === 'D');
+assert('20 => D', numericToGrade(20) === 'D');
+assert('19 => F', numericToGrade(19) === 'F');
+assert('0 => F', numericToGrade(0) === 'F');
+
+section('Grade Gap Zone Coverage (former mismatch zones)');
+assert('76 => B (not A)', numericToGrade(76) === 'B');
+assert('58 => C (not B)', numericToGrade(58) === 'C');
+assert('38 => D (not C)', numericToGrade(38) === 'D');
+assert('18 => F (not D)', numericToGrade(18) === 'F');
+assert('55 => C (not B)', numericToGrade(55) === 'C');
+assert('35 => D (not C)', numericToGrade(35) === 'D');
+assert('15 => F (not D)', numericToGrade(15) === 'F');
+
+section('Grade Colors');
+assert('A => green', gradeColor('A') === 'green');
+assert('B => blue', gradeColor('B') === 'blue');
+assert('C => amber', gradeColor('C') === 'amber');
+assert('D => amber', gradeColor('D') === 'amber');
+assert('F => red', gradeColor('F') === 'red');
+
+// ── Backend Score Roundtrip ─────────────────────
+section('Backend Score → Frontend Display Roundtrip');
+
+const backendLead1 = {
+  website_quality_score: 82,
+  website_grade: 'A',
+  opportunity_score: 45,
+  opportunity_label: 'Good opportunity',
+  audit_confidence: 'High',
+  review_bucket: 'Promising',
+  suppressed: false,
+  disqualified: false,
+  latest_audit: {
+    website_bucket: 'Basic live site',
+    ssl_status: 'HTTPS in use',
+    viewport_meta: 'Found',
+    page_title: 'Test Business',
+    meta_description: 'Great test business serving the community with pride',
+    word_count: 350,
+    form_count: 1,
+    image_count: 6,
+    on_page_phones: '555-123-4567',
+    on_page_emails: 'info@test.com',
+    cta_terms: 'Contact us, Get started',
+    http_status: 200,
+  },
+  data: {},
+};
+
+const g1 = computeWebsiteGrading(backendLead1);
+assert('Quality = backend 82', g1.siteQuality === 82);
+assert('Grade = backend A', g1.siteQualityGrade === 'A');
+assert('Opportunity = backend 45', g1.opportunity === 45);
+assert('Confidence = backend High', g1.confidence === 'High');
+assert('Verdict = backend label', g1.verdict === 'Good opportunity');
+assert('Suppressed = false', g1.suppressed === false);
+assert('Disqualified = false', g1.disqualified === false);
+
+const backendLead2 = {
+  website_quality_score: 28,
+  website_grade: 'D',
+  opportunity_score: 67,
+  opportunity_label: 'High opportunity',
+  audit_confidence: 'Medium',
+  review_bucket: 'High confidence',
+  suppressed: false,
+  disqualified: false,
+  latest_audit: {
+    website_bucket: 'Weak live site',
+    ssl_status: 'No HTTPS',
+    viewport_meta: 'Not found',
+    page_title: 'Home',
+    word_count: 30,
+    form_count: 0,
+    image_count: 0,
+    on_page_phones: '',
+    cta_terms: '',
+    http_status: 200,
+  },
+  data: {},
+};
+
+const g2 = computeWebsiteGrading(backendLead2);
+assert('Weak lead quality = backend 28', g2.siteQuality === 28);
+assert('Weak lead grade = backend D', g2.siteQualityGrade === 'D');
+assert('Weak lead opp = backend 67', g2.opportunity === 67);
+assert('Weak lead confidence = backend Medium', g2.confidence === 'Medium');
+assert('Weak lead verdict = backend label', g2.verdict === 'High opportunity');
+
+// ── Grade Consistency: displayed = backend_grade ─
+section('Grade Consistency');
+assert('Grade A displayed directly', backendLead1.website_grade === g1.siteQualityGrade);
+assert('Grade D displayed directly', backendLead2.website_grade === g2.siteQualityGrade);
+
+// Backend grade B
+const leadB = { website_quality_score: 60, website_grade: 'B', opportunity_score: 30, opportunity_label: 'Moderate opportunity', audit_confidence: 'Medium', review_bucket: 'Needs review', suppressed: false, disqualified: false, latest_audit: { website_bucket: 'Basic live site' }, data: {} };
+assert('Grade B displayed directly', computeWebsiteGrading(leadB).siteQualityGrade === 'B');
+
+// Backend grade C
+const leadC = { website_quality_score: 40, website_grade: 'C', opportunity_score: 22, opportunity_label: 'Moderate opportunity', audit_confidence: 'Low', review_bucket: 'Needs review', suppressed: false, disqualified: false, latest_audit: { website_bucket: 'Basic live site' }, data: {} };
+assert('Grade C displayed directly', computeWebsiteGrading(leadC).siteQualityGrade === 'C');
+
+// Backend grade F
+const leadF = { website_quality_score: 5, website_grade: 'F', opportunity_score: 72, opportunity_label: 'High opportunity', audit_confidence: 'Medium', review_bucket: 'Hot lead', suppressed: false, disqualified: false, latest_audit: { website_bucket: 'Broken site' }, data: {} };
+assert('Grade F displayed directly', computeWebsiteGrading(leadF).siteQualityGrade === 'F');
+
+// ── Suppressor Parity ───────────────────────────
+section('Suppressor / Disqualifier Parity');
+
+const suppressedLead = {
+  website_quality_score: 78,
+  website_grade: 'A',
+  opportunity_score: 12,
+  opportunity_label: 'Moderate opportunity (strong site)',
+  audit_confidence: 'High',
+  review_bucket: 'Low priority',
+  suppressed: true,
+  disqualified: false,
+  latest_audit: { website_bucket: 'Established website', ssl_status: 'HTTPS in use', viewport_meta: 'Found', page_title: 'Premium Business', meta_description: 'Full description here for meta', word_count: 500, form_count: 2, image_count: 10, on_page_phones: '555-999', on_page_emails: 'a@b.com', cta_terms: 'Contact, Quote, Start', http_status: 200 },
+  data: {},
+};
+
+const gSup = computeWebsiteGrading(suppressedLead);
+assert('Suppressed lead shows suppressed=true', gSup.suppressed === true);
+assert('Suppressed lead disqualified=false', gSup.disqualified === false);
+assert('Suppressed verdict from backend', gSup.verdict === 'Moderate opportunity (strong site)');
+
+const disqualifiedLead = {
+  website_quality_score: 85,
+  website_grade: 'A',
+  opportunity_score: 0,
+  opportunity_label: 'Low opportunity despite high quality',
+  audit_confidence: 'High',
+  review_bucket: 'Low priority',
+  suppressed: false,
+  disqualified: true,
+  latest_audit: { website_bucket: 'Established website' },
+  data: {},
+};
+
+const gDis = computeWebsiteGrading(disqualifiedLead);
+assert('Disqualified lead shows disqualified=true', gDis.disqualified === true);
+assert('Disqualified verdict from backend', gDis.verdict === 'Low opportunity despite high quality');
+
+// ── Confidence Parity ───────────────────────────
+section('Confidence Parity');
+assert('High confidence from backend', g1.confidence === 'High');
+assert('Medium confidence from backend', g2.confidence === 'Medium');
+
+const lowConfLead = {
+  website_quality_score: 20,
+  website_grade: 'D',
+  opportunity_score: 55,
+  opportunity_label: 'High opportunity',
+  audit_confidence: 'Low',
+  review_bucket: 'Needs review',
+  suppressed: false,
+  disqualified: false,
+  latest_audit: { website_bucket: 'Weak live site' },
+  data: {},
+};
+assert('Low confidence from backend', computeWebsiteGrading(lowConfLead).confidence === 'Low');
+
+// ── Verdict Parity ──────────────────────────────
+section('Verdict Parity');
+assert('High opportunity verdict', g2.verdict === 'High opportunity');
+assert('Good opportunity verdict', g1.verdict === 'Good opportunity');
+assert('Moderate opportunity verdict', computeWebsiteGrading(leadB).verdict === 'Moderate opportunity');
+assert('Low opp despite quality verdict', gDis.verdict === 'Low opportunity despite high quality');
+
+// Falls back to review_bucket when no label
+const noLabelLead = {
+  website_quality_score: 50,
+  website_grade: 'B',
+  opportunity_score: 30,
+  opportunity_label: '',
+  audit_confidence: 'Medium',
+  review_bucket: 'Promising',
+  suppressed: false,
+  disqualified: false,
+  latest_audit: { website_bucket: 'Basic live site' },
+  data: {},
+};
+assert('Verdict falls back to review_bucket', computeWebsiteGrading(noLabelLead).verdict === 'Promising');
+
+// ── No-Website Guard ────────────────────────────
+section('No-Website Guard');
+// renderWebsiteGrading shows N/A for no-website leads.
+// We test that computeWebsiteGrading still works gracefully.
+const noWebLead = {
+  website_quality_score: 0,
+  website_grade: 'F',
+  opportunity_score: 40,
+  opportunity_label: 'High opportunity',
+  audit_confidence: 'Medium',
+  review_bucket: 'Promising',
+  suppressed: false,
+  disqualified: false,
+  latest_audit: { website_bucket: 'No website' },
+  data: {},
+};
+const gNoWeb = computeWebsiteGrading(noWebLead);
+assert('No-website quality = 0', gNoWeb.siteQuality === 0);
+assert('No-website grade = F', gNoWeb.siteQualityGrade === 'F');
+assert('No-website opp from backend', gNoWeb.opportunity === 40);
+
+// ── Missing Audit Graceful Degradation ──────────
+section('Missing Audit Graceful Degradation');
+const missingAuditLead = {
+  website_quality_score: 35,
+  website_grade: 'C',
+  opportunity_score: 25,
+  opportunity_label: 'Moderate opportunity',
+  audit_confidence: 'Low',
+  review_bucket: 'Needs review',
+  suppressed: false,
+  disqualified: false,
+  data: {},
+};
+const gMissing = computeWebsiteGrading(missingAuditLead);
+assert('Missing audit: quality from backend', gMissing.siteQuality === 35);
+assert('Missing audit: grade from backend', gMissing.siteQualityGrade === 'C');
+assert('Missing audit: opp from backend', gMissing.opportunity === 25);
+assert('Missing audit: confidence from backend', gMissing.confidence === 'Low');
+assert('Missing audit: verdict from backend', gMissing.verdict === 'Moderate opportunity');
+
+// No backend fields at all — total fallback
+const bareMinLead = {
+  latest_audit: { website_bucket: 'Basic live site' },
+  data: {},
+};
+const gBare = computeWebsiteGrading(bareMinLead);
+assert('Bare lead: quality defaults 0', gBare.siteQuality === 0);
+assert('Bare lead: confidence defaults Low', gBare.confidence === 'Low');
+assert('Bare lead: verdict defaults Needs review', gBare.verdict === 'Needs review');
+
+// ── Leads List Regression ───────────────────────
+section('Leads List Regression (backend values pass through)');
+// Simulates what leads.js getLeadField reads
+function simGetOppScore(lead) {
+  return +(lead.last_opportunity_score ?? lead['Opportunity Score'] ?? lead.opportunity_score ?? -1);
+}
+function simGetReviewBucket(lead) {
+  return lead.review_bucket || lead['Review Bucket'] || '';
+}
+const listLead = {
+  last_opportunity_score: 45,
+  review_bucket: 'Promising',
+  opportunity_score: 45,
+  'Opportunity Score': 45,
+  'Review Bucket': 'Promising',
+};
+assert('List opp score = 45', simGetOppScore(listLead) === 45);
+assert('List review bucket = Promising', simGetReviewBucket(listLead) === 'Promising');
+
+// ── Category Breakdown Still Works ──────────────
+section('Category Breakdown (indicative only)');
+const gWithCats = computeWebsiteGrading(backendLead1);
+assert('Categories object exists', typeof gWithCats.categories === 'object');
+assert('Design category has score', typeof gWithCats.categories.design.score === 'number');
+assert('Design category has grade', typeof gWithCats.categories.design.grade === 'string');
+assert('Design category has reasons', Array.isArray(gWithCats.categories.design.reasons));
+assert('All 7 categories present', Object.keys(gWithCats.categories).length === 7);
+assert('Strengths array exists', Array.isArray(gWithCats.strengths));
+assert('Improvements array exists', Array.isArray(gWithCats.improvements));
+
+// Category scores do NOT override backend top-line
+assert('Top-line != weighted category avg', gWithCats.siteQuality === 82); // backend, not recomputed
+
+// ── Determinism ─────────────────────────────────
+section('Determinism');
+const d1 = computeWebsiteGrading(backendLead1);
+const d2 = computeWebsiteGrading(backendLead1);
+assert('Deterministic quality', d1.siteQuality === d2.siteQuality);
+assert('Deterministic opportunity', d1.opportunity === d2.opportunity);
+assert('Deterministic verdict', d1.verdict === d2.verdict);
+assert('Deterministic confidence', d1.confidence === d2.confidence);
+
+// ── Fallback from data_json payload ─────────────
+section('Fallback: data_json payload fields');
+const payloadOnlyLead = {
+  latest_audit: { website_bucket: 'Basic live site' },
+  data: {
+    'Website Quality Score': 55,
+    'Website Grade': 'B',
+    'Opportunity Score': 33,
+    'Opportunity Label': 'Moderate opportunity',
+    'Audit Confidence': 'Medium',
+    'Review Bucket': 'Needs review',
+  },
+};
+const gPayload = computeWebsiteGrading(payloadOnlyLead);
+assert('Payload fallback quality = 55', gPayload.siteQuality === 55);
+assert('Payload fallback grade = B', gPayload.siteQualityGrade === 'B');
+assert('Payload fallback opp = 33', gPayload.opportunity === 33);
+assert('Payload fallback confidence = Medium', gPayload.confidence === 'Medium');
+assert('Payload fallback verdict = Moderate opportunity', gPayload.verdict === 'Moderate opportunity');
+
+// ── Summary ─────────────────────────────────────
+section('Results');
+out.innerHTML += `\nTotal: ${passed + failed} | <span class="pass">Passed: ${passed}</span> | <span class="${failed ? 'fail' : 'pass'}">Failed: ${failed}</span>\n`;
+</script>
+</body>
+</html>

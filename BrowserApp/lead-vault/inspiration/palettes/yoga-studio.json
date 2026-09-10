@@ -1,0 +1,15 @@
+{
+  "name": "yoga-studio",
+  "primary": "#3A3530",
+  "accent": "#C27B5A",
+  "bg": "#F6F1EA",
+  "surface": "#ECE3D6",
+  "text": "#2A2620",
+  "muted": "#857A6E",
+  "border": "#DCCFBD",
+  "success": "#7A8B5D",
+  "warning": "#B36B4A",
+  "font_display": "Fraunces",
+  "font_body": "Nunito",
+  "notes": "Warm sand + terracotta + sage neutral. Breath-forward calm without the new-age clichés. Fraunces for organic display; Nunito keeps instructor bios approachable. Avoids the 'generic wellness brand' teal trap."
+}

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "key": "local-service",
+  "label": "Local Service",
+  "best_for": ["plumber", "roofer", "hvac", "electrician", "auto-repair", "general-contractor"],
+  "visual_principles": [
+    "Lead with fast trust and contact clarity.",
+    "Use practical imagery, strong contrast, and direct service proof.",
+    "Make the first CTA a call or quote action."
+  ],
+  "typography": {
+    "display": "condensed or sturdy sans",
+    "body": "humanist sans",
+    "tone": "clear, confident, no-nonsense"
+  },
+  "spacing": {
+    "density": "medium",
+    "section_padding": "compact-to-generous",
+    "card_radius": "small"
+  },
+  "imagery": {
+    "priority": "crew, equipment, vehicles, worksite, before-after",
+    "fallback": "restrained technical texture"
+  },
+  "cta_rules": [
+    "Show phone CTA above the fold when a phone exists.",
+    "Use quote, estimate, schedule, or emergency language based on category.",
+    "Repeat one primary CTA label consistently."
+  ],
+  "section_rhythm": ["hero", "trust", "services", "proof", "location", "conversion", "footer"],
+  "avoid": [
+    "Luxury editorial distance",
+    "Vague learn-more CTAs",
+    "Large decorative cards without service value"
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "_meta": {
+    "version": 1,
+    "description": "Trusted Summit motion primitives. Generated websites should request these by data attributes instead of inventing custom animation systems.",
+    "phase": 2,
+    "runtime_target": "summit-motion-runtime",
+    "default_motion_level": "premium_restrained"
+  },
+  "primitives": {
+    "reveal_up": {
+      "label": "Reveal Up",
+      "description": "Fade and translate content into place when it enters the viewport.",
+      "attributes": {
+        "data-motion": "reveal-up",
+        "data-motion-delay": "optional integer milliseconds, 0-600",
+        "data-motion-once": "optional true or false"
+      },
+      "allowed_contexts": [
+        "hero copy",
+        "section headings",
+        "service cards",
+        "gallery items",
+        "CTA panels"
+      ],
+      "avoid_contexts": [
+        "legal disclaimers",
+        "critical phone numbers",
+        "large blocks of body copy"
+      ],
+      "accessibility": {
+        "requires_reduced_motion_fallback": true,
+        "fallback_behavior": "Render immediately with no transform when prefers-reduced-motion is reduce.",
+        "focus_notes": "Never delay focusable controls long enough to make keyboard navigation confusing."
+      },
+      "performance": {
+        "max_instances": 36,
+        "uses_intersection_observer": true,
+        "uses_canvas": false,
+        "mobile_enabled": true
+      },
+      "implementation_notes": [
+        "Use opacity and transform only.",
+        "Default duration should be 420ms with ease-out.",
+        "Stagger repeated cards by 60-90ms."
+      ]
+    },
+    "gradient_mesh": {
+      "label": "Gradient Mesh Background",
+      "description": "A soft animated background made from layered radial gradients.",
+      "attributes": {
+        "data-bg": "gradient-mesh",
+        "data-bg-intensity": "optional subtle, medium, or bold",
+        "data-bg-palette": "optional brand, warm, cool, or neutral"
+      },
+      "allowed_contexts": [
+        "hero background",
+        "feature band",
+        "CTA band",
+        "empty visual panels"
+      ],
+      "avoid_contexts": [
+        "dense table-like content",
+        "long reading sections",
+        "legal pages",
+        "every section on a page"
+      ],
+      "accessibility": {
+        "requires_reduced_motion_fallback": true,
+        "fallback_behavior": "Keep the static gradient, disable animated background position and transforms.",
+        "contrast_notes": "Overlay text areas must still pass WCAG AA contrast."
+      },
+      "performance": {
+        "max_instances": 2,
+        "uses_intersection_observer": false,
+        "uses_canvas": false,
+        "mobile_enabled": true
+      },
+      "implementation_notes": [
+        "Prefer CSS pseudo-elements over DOM-heavy layers.",
+        "Animate slowly over 14-24 seconds.",
+        "Do not use random bright colors outside the selected palette."
+      ]
+    },
+    "parallax_image": {
+      "label": "Parallax Image",
+      "description": "Move an image slightly slower than page scroll for depth.",
+      "attributes": {
+        "data-parallax": "decimal speed between 0.05 and 0.25",
+        "data-parallax-axis": "optional y or x",
+        "data-parallax-clamp": "optional max pixel travel"
+      },
+      "allowed_contexts": [
+        "hero image",
+        "gallery feature image",
+        "story section image",
+        "product or facility photo"
+      ],
+      "avoid_contexts": [
+        "small thumbnails",
+        "logos",
+        "icons",
+        "images above text that must remain aligned"
+      ],
+      "accessibility": {
+        "requires_reduced_motion_fallback": true,
+        "fallback_behavior": "Use the same image with no transform.",
+        "content_notes": "Do not hide essential information inside moving imagery."
+      },
+      "performance": {
+        "max_instances": 4,
+        "uses_intersection_observer": true,
+        "uses_canvas": false,
+        "mobile_enabled": false
+      },
+      "implementation_notes": [
+        "Only transform visible elements.",
+        "Use requestAnimationFrame and passive scroll listeners if needed.",
+        "Disable on mobile by default."
+      ]
+    },
+    "sticky_cta": {
+      "label": "Sticky CTA",
+      "description": "A small persistent action bar that appears after the hero.",
+      "attributes": {
+        "data-motion": "sticky-cta",
+        "data-sticky-after": "optional CSS selector or viewport percentage",
+        "data-sticky-position": "optional bottom, top, or corner"
+      },
+      "allowed_contexts": [
+        "phone CTA",
+        "book appointment CTA",
+        "request quote CTA",
+        "contact sales CTA"
+      ],
+      "avoid_contexts": [
+        "pages with no real phone, email, or booking destination",
+        "legal pages",
+        "auth or portal placeholders"
+      ],
+      "accessibility": {
+        "requires_reduced_motion_fallback": false,
+        "fallback_behavior": "CTA remains visible without entrance animation.",
+        "focus_notes": "Must be reachable by keyboard and must not cover form controls."
+      },
+      "performance": {
+        "max_instances": 1,
+        "uses_intersection_observer": true,
+        "uses_canvas": false,
+        "mobile_enabled": true
+      },
+      "implementation_notes": [
+        "Use actual tel, mailto, or scraped booking URL only.",
+        "Do not use placeholder # links.",
+        "Keep mobile height compact."
+      ]
+    },
+    "cursor_spotlight": {
+      "label": "Cursor Spotlight",
+      "description": "A subtle radial light follows the pointer within a hero or feature area.",
+      "attributes": {
+        "data-bg": "cursor-spotlight",
+        "data-spotlight-size": "optional CSS length",
+        "data-spotlight-opacity": "optional decimal 0.05-0.18"
+      },
+      "allowed_contexts": [
+        "tech-like hero",
+        "premium feature band",
+        "dark editorial hero",
+        "interactive proof section"
+      ],
+      "avoid_contexts": [
+        "medical calm pages",
+        "legal pages",
+        "mobile-only contexts",
+        "busy photo galleries"
+      ],
+      "accessibility": {
+        "requires_reduced_motion_fallback": true,
+        "fallback_behavior": "Render a static radial gradient or no spotlight.",
+        "contrast_notes": "The spotlight must not reduce text contrast."
+      },
+      "performance": {
+        "max_instances": 1,
+        "uses_intersection_observer": false,
+        "uses_canvas": false,
+        "mobile_enabled": false
+      },
+      "implementation_notes": [
+        "Use CSS variables updated on pointermove.",
+        "Throttle updates with requestAnimationFrame.",
+        "Keep opacity subtle."
+      ]
+    },
+    "water_attractor": {
+      "label": "Water Attractor Hero",
+      "description": "A canvas water field whose droplets and ripple rings are pulled toward pointer movement, like dragging a finger across water.",
+      "attributes": {
+        "data-bg": "water-attractor",
+        "data-water-palette": "optional aqua, fire, or ink",
+        "data-water-particles": "optional integer particle count, 36-160"
+      },
+      "allowed_contexts": [
+        "hero background",
+        "immersive above-the-fold brand moment",
+        "service pages where water, fluid, inspection, precision, or flow is relevant"
+      ],
+      "avoid_contexts": [
+        "dense table-like content",
+        "legal pages",
+        "medical calm pages",
+        "every section on a page"
+      ],
+      "accessibility": {
+        "requires_reduced_motion_fallback": true,
+        "fallback_behavior": "Render a static low-density canvas texture when prefers-reduced-motion is reduce.",
+        "contrast_notes": "Hero text must sit above the canvas with a scrim or solid overlay so it remains readable."
+      },
+      "performance": {
+        "max_instances": 1,
+        "uses_intersection_observer": false,
+        "uses_canvas": true,
+        "mobile_enabled": true
+      },
+      "implementation_notes": [
+        "Add the attribute to the hero section only; do not add inline water JavaScript.",
+        "Use data-water-palette=\"aqua\" for water-first brands, \"fire\" for fire/backflow and industrial service sites, and \"ink\" for dark premium heroes.",
+        "Keep a readable overlay between the canvas and hero copy."
+      ]
+    }
+  }
+}

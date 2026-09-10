@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Discovery - Summit Digital Solutions{% endblock %}
+{% block page_title %}Discovery{% endblock %}
+
+{% block content %}
+<div class="grid-2">
+  <!-- Left: Config -->
+  <div class="card">
+    <div class="card-header">Run Configuration</div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Seed Mode</label>
+          <select class="form-select" id="cfgSeedMode">
+            <option>Hybrid</option><option>Overture</option><option>Google</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tile Grid Size</label>
+          <input class="form-input" id="cfgGridSize" type="number" value="3" min="1" max="5">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Min Rating</label>
+          <input class="form-input" id="cfgMinRating" type="number" step="0.1" value="4.0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Min Reviews</label>
+          <input class="form-input" id="cfgMinReviews" type="number" value="10">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Min Business Age (days)</label>
+        <input class="form-input" id="cfgMinAge" type="number" value="90">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Search Areas</label>
+        <select class="form-select mb-sm" id="cfgAreaPreset"></select>
+        <div class="text-muted text-sm mb-sm" id="cfgAreaSummary"></div>
+        <textarea class="form-textarea" id="cfgAreas" rows="4" placeholder="One area per line, e.g. Fort Collins, CO"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Client / Campaign</label>
+        <input class="form-input" id="cfgClientName" placeholder="Optional">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Scan Profile</label>
+        <select class="form-select" id="cfgScanProfile"></select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Business Target</label>
+          <select class="form-select" id="cfgTargetProfile"></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Opportunity Focus</label>
+          <select class="form-select" id="cfgOpportunityFocus"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Custom Target Keywords</label>
+        <textarea class="form-textarea" id="cfgTargetKeywords" rows="2" placeholder="Optional, one keyword per line"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Automation Intensity</label>
+        <select class="form-select" id="cfgAutomationIntensity"></select>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgFastTest">
+        <label for="cfgFastTest">Fast test mode</label>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgSkipEmail">
+        <label for="cfgSkipEmail">Skip email lookup</label>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgBuiltWithChecks">
+        <label for="cfgBuiltWithChecks">Website tech stack signals</label>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tech Stack Run Cap</label>
+        <input class="form-input" id="cfgBuiltWithRunCap" type="number" min="0" max="100" value="10">
+      </div>
+      <div class="flex gap-sm">
+        <button class="btn btn-primary" id="btnStartRun" onclick="startRun()">Start Run</button>
+        <button class="btn btn-danger btn-sm" id="btnStopRun" onclick="stopRun()" disabled>Stop</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Monitor -->
+  <div class="card">
+    <div class="card-header flex justify-between items-center">
+      <span>Run Monitor</span>
+      <span class="badge badge-gray" id="runStatusBadge">Idle</span>
+    </div>
+    <div class="card-body">
+      <div class="log-viewer" id="logViewer">Waiting for a run to start...</div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/discovery.js?v=3"></script>
+{% endblock %}

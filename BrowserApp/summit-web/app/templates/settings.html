@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% block title %}Settings - Summit Digital Solutions{% endblock %}
+{% block page_title %}Settings{% endblock %}
+
+{% block content %}
+<div class="grid-2">
+  <!-- Lead Machine Settings -->
+  <div class="card">
+    <div class="card-header">Lead Machine Settings</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="form-label">Google Maps API Key</label>
+        <input class="form-input" id="cfgGoogleKey" type="password" placeholder="API key">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Hunter API Key</label>
+        <input class="form-input" id="cfgHunterKey" type="password" placeholder="API key">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">DataForSEO Login</label>
+          <input class="form-input" id="cfgDataForSeoLogin" placeholder="Account email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">DataForSEO Password</label>
+          <input class="form-input" id="cfgDataForSeoPassword" type="password" placeholder="API password">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Yelp Fusion API Key</label>
+        <input class="form-input" id="cfgYelpKey" type="password" placeholder="API key">
+      </div>
+      <div class="form-group">
+        <label class="form-label">California SOS API Key</label>
+        <input class="form-input" id="cfgCaliforniaSosKey" type="password" placeholder="CALICO subscription key">
+      </div>
+      <div class="form-group">
+        <label class="form-label">PageSpeed API Key</label>
+        <input class="form-input" id="cfgPageSpeedKey" type="password" placeholder="Optional; Google API key">
+      </div>
+      <div class="form-group">
+        <label class="form-label">BuiltWith API Key</label>
+        <input class="form-input" id="cfgBuiltWithKey" type="password" placeholder="BuiltWith Free API key">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Output Folder</label>
+        <input class="form-input" id="cfgOutputFolder" placeholder="Path to output folder">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Seed Mode</label>
+          <select class="form-select" id="cfgSeedMode">
+            <option>Hybrid</option><option>Overture</option><option>Google</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tile Grid Size</label>
+          <input class="form-input" id="cfgGridSize" type="number" value="3" min="1" max="5">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Min Rating</label>
+          <input class="form-input" id="cfgMinRating" type="number" step="0.1" value="4.0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Min Reviews</label>
+          <input class="form-input" id="cfgMinReviews" type="number" value="10">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Min Business Age (days)</label>
+        <input class="form-input" id="cfgMinAge" type="number" value="90">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Search Areas</label>
+        <select class="form-select mb-sm" id="cfgAreaPreset"></select>
+        <div class="text-muted text-sm mb-sm" id="cfgAreaSummary"></div>
+        <textarea class="form-textarea" id="cfgAreas" rows="4" placeholder="One area per line"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Default Client / Campaign</label>
+        <input class="form-input" id="cfgClientName" placeholder="Optional">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Default Scan Profile</label>
+        <select class="form-select" id="cfgScanProfile"></select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Default Business Target</label>
+          <select class="form-select" id="cfgTargetProfile"></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Default Opportunity Focus</label>
+          <select class="form-select" id="cfgOpportunityFocus"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Default Target Keywords</label>
+        <textarea class="form-textarea" id="cfgTargetKeywords" rows="2" placeholder="Optional, one keyword per line"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Default Automation Intensity</label>
+        <select class="form-select" id="cfgAutomationIntensity"></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Automation Agent Review Limit</label>
+        <input class="form-input" id="cfgAutomationAgentReviewLimit" type="number" min="0" max="50" value="10">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Fast Test Lead Limit</label>
+          <input class="form-input" id="cfgFastLimit" type="number" value="75">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fast Test Run Cap</label>
+          <input class="form-input" id="cfgFastCap" type="number" placeholder="Optional">
+        </div>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgFastTest">
+        <label for="cfgFastTest">Fast test mode</label>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgSkipEmail">
+        <label for="cfgSkipEmail">Skip email lookup</label>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgBrowserFallback">
+        <label for="cfgBrowserFallback">Use browser fallback for hard website checks</label>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgDomainChecks">
+        <label for="cfgDomainChecks">Verify domains with DNS, SSL, robots, and sitemap checks</label>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgRdapChecks">
+        <label for="cfgRdapChecks">Include slower RDAP domain age checks</label>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgPageSpeedChecks">
+        <label for="cfgPageSpeedChecks">Run PageSpeed and CrUX checks for live websites</label>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">PageSpeed Strategy</label>
+          <select class="form-select" id="cfgPageSpeedStrategy">
+            <option value="mobile">Mobile</option>
+            <option value="desktop">Desktop</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">PageSpeed Run Cap</label>
+          <input class="form-input" id="cfgPageSpeedRunCap" type="number" min="0" max="100" value="10">
+        </div>
+      </div>
+      <div class="form-check mb-md">
+        <input type="checkbox" id="cfgBuiltWithChecks">
+        <label for="cfgBuiltWithChecks">Run BuiltWith tech stack checks for live websites</label>
+      </div>
+      <div class="form-group">
+        <label class="form-label">BuiltWith Run Cap</label>
+        <input class="form-input" id="cfgBuiltWithRunCap" type="number" min="0" max="100" value="10">
+      </div>
+    </div>
+  </div>
+
+  <!-- Lead Vault / AI Settings -->
+  <div class="card">
+    <div class="card-header">Lead Vault & AI Settings</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="form-label">Database Path</label>
+        <input class="form-input" id="cfgDbPath" placeholder="Path to lead_machine.db">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">AI Provider</label>
+          <select class="form-select" id="cfgAiProvider" onchange="updateModelDropdown()">
+            <option value="OpenAI">OpenAI</option>
+            <option value="Anthropic">Anthropic</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">AI Model</label>
+          <select class="form-select" id="cfgAiModel"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">OpenAI API Key</label>
+        <input class="form-input" id="cfgOpenaiKey" type="password" placeholder="sk-...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Anthropic API Key</label>
+        <input class="form-input" id="cfgAnthropicKey" type="password" placeholder="sk-ant-...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Agency Name</label>
+        <input class="form-input" id="cfgAgencyName" placeholder="Your agency or business name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Offer Positioning</label>
+        <textarea class="form-textarea" id="cfgOfferPos" rows="3" placeholder="Describe your offer for AI drafts..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex gap-sm mt-md">
+  <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+  <span class="text-muted text-sm" id="saveStatus"></span>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/settings.js?v=13"></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "key": "premium-local",
+  "label": "Premium Local",
+  "best_for": ["dentist", "medspa", "law-firm", "realtor", "professional-services", "generic"],
+  "visual_principles": [
+    "Balance polished authority with local approachability.",
+    "Use restrained contrast, strong hierarchy, and clear proof.",
+    "Favor fewer, better sections over dense grid repetition."
+  ],
+  "typography": {
+    "display": "editorial serif or refined display sans",
+    "body": "clean humanist sans",
+    "tone": "assured, calm, specific"
+  },
+  "spacing": {
+    "density": "generous",
+    "section_padding": "generous",
+    "card_radius": "small"
+  },
+  "imagery": {
+    "priority": "practice, team, office, client-ready spaces, polished details",
+    "fallback": "minimal layered surface"
+  },
+  "cta_rules": [
+    "Use consultation, appointment, or contact language.",
+    "Pair primary CTA with reassurance or proof.",
+    "Avoid urgency unless the business type supports it."
+  ],
+  "section_rhythm": ["hero", "trust", "services", "proof", "conversion", "location", "footer"],
+  "avoid": [
+    "Emergency-style urgency for advisory categories",
+    "Overly playful motifs",
+    "Unsubstantiated prestige claims"
+  ]
+}

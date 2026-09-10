@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "source_key": "tailark",
+  "patterns": [
+    {
+      "key": "editorial_feature_stack",
+      "summary": "Alternates feature explanations with visual emphasis so a page feels less grid-bound.",
+      "section_types": ["services", "proof"],
+      "abstract_moves": [
+        "Use one larger feature story before compact supporting items.",
+        "Vary section proportions instead of repeating equal cards."
+      ]
+    },
+    {
+      "key": "compact_social_proof_strip",
+      "summary": "A narrow proof strip supports credibility without dominating the page.",
+      "section_types": ["trust"],
+      "abstract_moves": [
+        "Use short trust signals near navigation or hero.",
+        "Avoid fake metrics when proof is not scraped."
+      ]
+    }
+  ]
+}

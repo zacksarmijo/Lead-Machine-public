@@ -1,0 +1,15 @@
+{
+  "name": "fitness-gym",
+  "primary": "#0A0A0A",
+  "accent": "#C4F82A",
+  "bg": "#F4F4F2",
+  "surface": "#1A1A1A",
+  "text": "#0A0A0A",
+  "muted": "#6B6B6B",
+  "border": "#2A2A2A",
+  "success": "#4ADE80",
+  "warning": "#F97316",
+  "font_display": "Anton",
+  "font_body": "Inter",
+  "notes": "Jet black + electric lime on concrete neutral. Kinetic, gritty, disciplined — designed for dark-mode hero + bright-light secondary sections. Anton brings gym-sign weight without ALL CAPS BRO ENERGY; Inter handles schedule grids."
+}

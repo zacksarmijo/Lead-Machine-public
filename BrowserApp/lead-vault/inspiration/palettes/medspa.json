@@ -1,0 +1,15 @@
+{
+  "name": "medspa",
+  "primary": "#2A2924",
+  "accent": "#B08968",
+  "bg": "#F7F3EE",
+  "surface": "#EDE6DC",
+  "text": "#1F1E1A",
+  "muted": "#726C63",
+  "border": "#DCD3C6",
+  "success": "#6E8E5E",
+  "warning": "#B86A5A",
+  "font_display": "Cormorant Garamond",
+  "font_body": "Inter",
+  "notes": "Warm charcoal + muted camel on linen. Editorial luxury that doesn't scream 'clinic'. Cormorant pairs with Inter for that quiet-confidence salon feel. Avoids the 'pink-and-script' medspa stereotype."
+}

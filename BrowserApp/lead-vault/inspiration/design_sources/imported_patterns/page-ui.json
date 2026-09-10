@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "source_key": "page-ui",
+  "patterns": [
+    {
+      "key": "cta_led_page_rhythm",
+      "summary": "Primary action appears in the hero, mid-page, and final conversion area with consistent labels.",
+      "section_types": ["hero", "conversion"],
+      "abstract_moves": [
+        "Repeat the same conversion intent with context-specific copy.",
+        "Keep action labels concrete and business-specific."
+      ]
+    },
+    {
+      "key": "benefit_then_detail",
+      "summary": "Benefit copy introduces service details before deeper explanations.",
+      "section_types": ["services"],
+      "abstract_moves": [
+        "Lead each service with visitor value.",
+        "Use details only after the main benefit is clear."
+      ]
+    }
+  ]
+}

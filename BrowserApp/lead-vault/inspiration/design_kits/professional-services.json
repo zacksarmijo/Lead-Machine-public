@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "key": "professional-services",
+  "label": "Professional Services",
+  "best_for": ["law-firm", "realtor", "professional-services", "accountant", "consultant"],
+  "visual_principles": [
+    "Prioritize credibility, clarity, and decision support.",
+    "Use structured proof and service explanations over decorative grids.",
+    "Make the contact path serious and friction-light."
+  ],
+  "typography": {
+    "display": "editorial serif or authoritative sans",
+    "body": "neutral sans",
+    "tone": "credible, direct, measured"
+  },
+  "spacing": {
+    "density": "medium",
+    "section_padding": "generous",
+    "card_radius": "small"
+  },
+  "imagery": {
+    "priority": "office, team, neighborhood, client process, document or property details",
+    "fallback": "structured geometric surface"
+  },
+  "cta_rules": [
+    "Use consultation, case review, valuation, or contact language by category.",
+    "Pair CTAs with privacy or next-step reassurance when appropriate.",
+    "Avoid aggressive retail urgency."
+  ],
+  "section_rhythm": ["hero", "trust", "services", "proof", "conversion", "footer"],
+  "avoid": [
+    "Playful layouts",
+    "Unsupported guarantees",
+    "Decorative icons as proof"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "electrician",
+  "primary": "#0F172A",
+  "accent": "#EAB308",
+  "bg": "#F8FAFC",
+  "surface": "#E7ECF2",
+  "text": "#0F172A",
+  "muted": "#475569",
+  "border": "#CBD5E1",
+  "success": "#16A34A",
+  "warning": "#DC2626",
+  "font_display": "Barlow Condensed",
+  "font_body": "Inter",
+  "notes": "Industrial slate + safety yellow on cool neutral. Reads as licensed, code-compliant, hazard-aware without leaning on literal lightning bolts. Barlow Condensed for panel-ready headers; Inter for clean service lists."
+}

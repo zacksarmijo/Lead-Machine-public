@@ -1,0 +1,15 @@
+{
+  "name": "generic",
+  "primary": "#0F172A",
+  "accent": "#2563EB",
+  "bg": "#FFFFFF",
+  "surface": "#F8FAFC",
+  "text": "#0F172A",
+  "muted": "#475569",
+  "border": "#E2E8F0",
+  "success": "#16A34A",
+  "warning": "#F59E0B",
+  "font_display": "Inter",
+  "font_body": "Inter",
+  "notes": "Neutral slate + blue. Safe default. Works for most service businesses. WCAG AA contrast verified for text on bg."
+}

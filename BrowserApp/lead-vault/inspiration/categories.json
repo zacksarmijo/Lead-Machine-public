@@ -1,0 +1,800 @@
+{
+  "_meta": {
+    "version": 1,
+    "description": "Category → website inspiration profile. Reference URLs are NOT scraped; they are listed so humans reviewing can verify the aesthetic direction. AI receives only the palette, layouts, tone, must_include, and avoid fields — never the URLs — to stay legally clean.",
+    "fallback": "generic"
+  },
+  "generic": {
+    "palette": "generic",
+    "recommended_layouts": [
+      "hero_split",
+      "service_grid_3x",
+      "trust_badge_row",
+      "testimonial_block",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "clean, professional, confident without shouting",
+    "must_include": [
+      "clear H1 stating what the business does and where",
+      "primary CTA above the fold",
+      "three to six service/feature blocks",
+      "visible phone number",
+      "contact form or booking link",
+      "year established or founding story"
+    ],
+    "avoid": [
+      "stock-photo heroes with no local context",
+      "lorem ipsum or placeholder copy in shipped output",
+      "generic taglines like 'your trusted partner'",
+      "animated splash screens",
+      "autoplay video with sound"
+    ],
+    "reference_urls": [],
+    "keywords": [],
+    "interaction_kit": [
+      "sticky top nav that shrinks after 80px scroll",
+      "scroll-reveal fade+slide-up on every major section (IntersectionObserver, 400ms ease-out)",
+      "hover lift (translateY -2px + deeper shadow) on cards and primary buttons",
+      "smooth scroll on anchor links"
+    ]
+  },
+  "realtor": {
+    "palette": "realtor",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "agent_card_grid",
+      "service_grid_3x",
+      "testimonial_block",
+      "trust_badge_row",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "warm, trustworthy, locally rooted; premium without feeling corporate",
+    "must_include": [
+      "agent bio with real photo",
+      "specific neighborhoods and areas served",
+      "certifications and designations (e.g. SRES, CSA, CAPS)",
+      "recent sales or client story if available",
+      "both 'buy' and 'sell' pathways",
+      "direct phone + contact form"
+    ],
+    "avoid": [
+      "generic drone shots of suburbs unrelated to agent's market",
+      "hard-sell 'we buy houses fast' messaging",
+      "stock agent headshots",
+      "MLS IDX widgets in the hero"
+    ],
+    "reference_urls": [
+      "https://compass.com",
+      "https://www.sothebysrealty.com"
+    ],
+    "keywords": [
+      "real estate",
+      "realtor",
+      "realty",
+      "broker",
+      "homes",
+      "agent"
+    ],
+    "interaction_kit": [
+      "hero with scroll-linked parallax on the background image (translate 0.2x scroll)",
+      "agent portrait scale 1.03 on hover inside a fixed frame",
+      "staggered fade-in on agent cards (120ms per card)",
+      "accent-colored underline reveal on agent contact links"
+    ]
+  },
+  "plumber": {
+    "palette": "plumber",
+    "recommended_layouts": [
+      "hero_split",
+      "service_grid_3x",
+      "emergency_call_band",
+      "trust_badge_row",
+      "testimonial_block",
+      "service_area_map",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "direct, confidence-inspiring, emergency-ready; skilled tradesperson — not polished marketing fluff",
+    "must_include": [
+      "24/7 or emergency availability if true",
+      "licensed and bonded statement with license number",
+      "core services list (drain, water heater, sewer, leak, etc.)",
+      "service area by city or zip",
+      "phone number prominent in header",
+      "warranty or guarantee"
+    ],
+    "avoid": [
+      "stock photos of stuffed suits",
+      "vague 'plumbing services' headlines without a real offer",
+      "hiding the phone number below the fold",
+      "corporate jargon"
+    ],
+    "reference_urls": [
+      "https://www.rotorooter.com",
+      "https://www.benjaminfranklinplumbing.com"
+    ],
+    "keywords": [
+      "plumb",
+      "plumber",
+      "drain",
+      "water heater",
+      "sewer"
+    ],
+    "interaction_kit": [
+      "sticky '24/7 Call Now' bar pinned to the bottom on mobile, top-right on desktop",
+      "subtle pulse on the emergency CTA (box-shadow scale, 2.5s loop)",
+      "hover fill on service cards: border goes accent, card lifts 3px",
+      "scroll-reveal stagger on service grid"
+    ]
+  },
+  "landscaper": {
+    "palette": "landscaper",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "before_after_gallery",
+      "service_grid_3x",
+      "seasonal_services_band",
+      "testimonial_block",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "grounded, craft-oriented, visual-first; showcase the work, not the sales pitch",
+    "must_include": [
+      "hero image of actual completed project (not stock)",
+      "before/after gallery if available",
+      "service list (design, install, maintenance, hardscape, irrigation)",
+      "service area",
+      "seasonal scheduling note (snow removal if applicable)",
+      "free estimate CTA"
+    ],
+    "avoid": [
+      "clip-art grass or cartoon mowers",
+      "generic green gradients",
+      "bullet lists without any photo proof"
+    ],
+    "reference_urls": [
+      "https://www.hoerrschaudt.com",
+      "https://www.earthworksinc.com"
+    ],
+    "keywords": [
+      "landscape",
+      "landscaping",
+      "lawn",
+      "yard",
+      "tree",
+      "garden",
+      "hardscape",
+      "irrigation"
+    ],
+    "interaction_kit": [
+      "hero with slow ken-burns style zoom on a real project photo",
+      "before/after drag slider in the gallery section (mouse and touch)",
+      "scroll-reveal masonry images with 80ms stagger",
+      "seasonal band fades between color themes based on current month"
+    ]
+  },
+  "roofer": {
+    "palette": "roofer",
+    "recommended_layouts": [
+      "hero_split",
+      "service_grid_3x",
+      "trust_badge_row",
+      "storm_damage_band",
+      "testimonial_block",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "sturdy, competent, insurance-aware",
+    "must_include": [
+      "licensed/insured statement",
+      "storm and hail damage handling if serving affected region",
+      "material options (asphalt, metal, tile)",
+      "inspection or estimate CTA",
+      "warranty terms"
+    ],
+    "avoid": [
+      "generic 'best roofer in town' copy",
+      "hidden pricing games"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "roof",
+      "roofer",
+      "roofing",
+      "shingle",
+      "gutter"
+    ],
+    "interaction_kit": [
+      "parallax sky background on the hero",
+      "subtle rain or particle overlay on the storm-damage band (disabled on mobile)",
+      "count-up numbers on trust badges (years in business, roofs replaced)",
+      "pulsing 'Free Inspection' CTA shadow"
+    ]
+  },
+  "dentist": {
+    "palette": "dentist",
+    "recommended_layouts": [
+      "hero_split",
+      "service_grid_3x",
+      "team_bio_row",
+      "testimonial_block",
+      "insurance_accepted_band",
+      "booking_cta_band",
+      "footer_standard"
+    ],
+    "tone": "calm, clean, reassuring; modern medical without feeling sterile",
+    "must_include": [
+      "online booking link",
+      "insurance accepted list",
+      "core services (cleanings, cosmetic, emergency, etc.)",
+      "team bios with photos",
+      "office hours and address"
+    ],
+    "avoid": [
+      "overly clinical stock photos of generic teeth",
+      "fear-based messaging"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "dentist",
+      "dental",
+      "orthodont",
+      "oral"
+    ],
+    "interaction_kit": [
+      "soft fade-in hero with minimal motion (no pulses, no bounces)",
+      "scroll-reveal on team cards with gentle 300ms ease",
+      "booking CTA has a quiet resting glow; hover deepens shadow",
+      "insurance pills fade in one-by-one, 60ms stagger"
+    ]
+  },
+  "hvac": {
+    "palette": "hvac",
+    "recommended_layouts": [
+      "hero_split",
+      "service_grid_3x",
+      "emergency_call_band",
+      "trust_badge_row",
+      "seasonal_services_band",
+      "testimonial_block",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "dependable, technical, seasonal urgency",
+    "must_include": [
+      "24/7 emergency availability if true",
+      "heating and cooling service split",
+      "licensed/bonded/insured",
+      "financing options if offered",
+      "service area"
+    ],
+    "avoid": [
+      "generic heat/cool stock illustrations"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "hvac",
+      "heating",
+      "cooling",
+      "air conditioning",
+      "furnace"
+    ],
+    "interaction_kit": [
+      "hero gradient shifts warmer or cooler based on current season",
+      "emergency call CTA pulses gently",
+      "scroll-reveal on seasonal band columns with directional slide",
+      "count-up on 'response time' metrics if scraped"
+    ]
+  },
+  "electrician": {
+    "palette": "electrician",
+    "recommended_layouts": [
+      "hero_split",
+      "service_grid_3x",
+      "trust_badge_row",
+      "emergency_call_band",
+      "testimonial_block",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "precise, safety-first, licensed tradesperson",
+    "must_include": [
+      "state license number",
+      "core services (panel, wiring, EV charger, lighting)",
+      "emergency line if offered",
+      "service area"
+    ],
+    "avoid": [
+      "lightning bolt clip art as primary hero visual"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "electric",
+      "electrician",
+      "electrical",
+      "wiring"
+    ],
+    "interaction_kit": [
+      "accent-yellow glow under primary CTA on hover (safety-panel feel)",
+      "icon fill-on-hover for service cards (stroke to fill transition)",
+      "scroll-reveal stagger on service grid",
+      "subtle grid-line background animation on hero (very slow drift)"
+    ]
+  },
+  "chiropractor": {
+    "palette": "chiropractor",
+    "recommended_layouts": [
+      "hero_split",
+      "service_grid_3x",
+      "team_bio_row",
+      "testimonial_block",
+      "insurance_accepted_band",
+      "booking_cta_band",
+      "footer_standard"
+    ],
+    "tone": "wellness-oriented, approachable, evidence-based",
+    "must_include": [
+      "practitioner bios",
+      "conditions treated list",
+      "online booking link",
+      "insurance accepted"
+    ],
+    "avoid": [
+      "spine clip art",
+      "fear-based pain marketing"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "chiropract",
+      "spine",
+      "wellness"
+    ],
+    "interaction_kit": [
+      "slow breathe animation on hero headline (opacity 1 to 0.85 to 1, 4s loop)",
+      "scroll-reveal with long ease-out (500ms) on condition cards",
+      "calm parallax on hero background",
+      "no aggressive pulses or bounces anywhere"
+    ]
+  },
+  "restaurant": {
+    "palette": "restaurant",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "menu_showcase",
+      "photo_gallery",
+      "hours_and_location_band",
+      "reservation_cta_band",
+      "footer_standard"
+    ],
+    "tone": "appetite-driving, sense of place, photography-led",
+    "must_include": [
+      "hours and address prominent",
+      "menu link or embedded menu",
+      "reservation or order-online CTA",
+      "food photography (real, not stock)"
+    ],
+    "avoid": [
+      "stock food photography",
+      "music that autoplays"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "restaurant",
+      "bistro",
+      "pizza",
+      "grill",
+      "kitchen",
+      "eatery",
+      "diner",
+      "steakhouse"
+    ],
+    "interaction_kit": [
+      "hero photo with slow ken-burns zoom (1.0 to 1.05 over 18s)",
+      "menu tabs with cross-fade between categories (200ms)",
+      "scroll-reveal menu items with 50ms stagger",
+      "sticky 'Reserve' button bottom-right after 40vh scroll"
+    ]
+  },
+  "restaurant-upscale": {
+    "palette": "restaurant-upscale",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "menu_showcase",
+      "photo_gallery",
+      "hours_and_location_band",
+      "reservation_cta_band",
+      "footer_standard"
+    ],
+    "tone": "editorial, quiet confidence, sense of occasion; fewer words, more silence around them",
+    "must_include": [
+      "chef or owner backstory if scraped",
+      "seasonal or tasting menu reference if scraped",
+      "reservations-first mentality (primary CTA is reserve, not order)",
+      "address with neighborhood name",
+      "dress code or atmosphere cue if scraped"
+    ],
+    "avoid": [
+      "coupons, deals, percent-off badges",
+      "loud animations",
+      "stock food photography",
+      "emoji in headings"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "fine dining",
+      "tasting menu",
+      "chef",
+      "michelin",
+      "upscale"
+    ],
+    "interaction_kit": [
+      "very slow fade-in reveals (700ms ease) with 250ms stagger",
+      "minimal hover motion: underline grow, no card lifts",
+      "hero with gentle parallax only (0.1x scroll)",
+      "respect white space over motion; restraint is the aesthetic"
+    ]
+  },
+  "cafe-bakery": {
+    "palette": "cafe-bakery",
+    "recommended_layouts": [
+      "hero_split",
+      "menu_showcase",
+      "photo_gallery",
+      "hours_and_location_band",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "warm, handmade, neighborhood-rooted; voice like a handwritten note",
+    "must_include": [
+      "daily baked or made-today line if scraped",
+      "hours visible — breakfast crowd depends on it",
+      "menu with category tabs (coffee, pastry, lunch)",
+      "whether they serve whole cakes / pre-order if scraped",
+      "dog-friendly / kid-friendly cues if scraped"
+    ],
+    "avoid": [
+      "over-polished tech-startup aesthetic",
+      "stock latte art photography",
+      "generic 'coffee, fuel of life' taglines"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "cafe",
+      "coffee",
+      "espresso",
+      "bakery",
+      "pastry",
+      "bread",
+      "baked"
+    ],
+    "interaction_kit": [
+      "hand-drawn underline reveal on nav hover (SVG stroke-dashoffset)",
+      "scroll-reveal menu items with warm easing (400ms cubic)",
+      "hero photo gentle parallax",
+      "hours band with 'open now' dot pulsing if currently open"
+    ]
+  },
+  "salon-hair": {
+    "palette": "salon-hair",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "services_price_menu",
+      "team_bio_row",
+      "photo_gallery",
+      "booking_cta_band",
+      "footer_standard"
+    ],
+    "tone": "editorial-beauty, calm confidence, tactile luxury",
+    "must_include": [
+      "online booking link",
+      "stylist bios with specialties",
+      "service price list or 'starting at' pricing",
+      "photo gallery of real work (not stock)",
+      "product lines carried if scraped (Redken, Oribe, etc.)"
+    ],
+    "avoid": [
+      "before/after with unrealistic retouching",
+      "glamour stock photography",
+      "caps-lock sale banners"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "salon",
+      "hair",
+      "stylist",
+      "colorist",
+      "balayage",
+      "extensions"
+    ],
+    "interaction_kit": [
+      "editorial image reveals (vertical mask wipe 600ms)",
+      "scroll-reveal on stylist cards with left accent-border drawing in",
+      "services price menu rows: accent fill behind row on hover",
+      "hero photo scale-in on load (1.04 to 1.0 over 800ms)"
+    ]
+  },
+  "barber": {
+    "palette": "barber",
+    "recommended_layouts": [
+      "hero_split",
+      "services_price_menu",
+      "team_bio_row",
+      "photo_gallery",
+      "booking_cta_band",
+      "footer_standard"
+    ],
+    "tone": "craft-first, understated masculinity, shop-culture — not 'bro energy'",
+    "must_include": [
+      "service price list (cut, beard, shave, hot towel)",
+      "barber bios with years in craft",
+      "walk-in vs appointment policy",
+      "hours including Saturday (barbershop peak)",
+      "shop history or founding year if scraped"
+    ],
+    "avoid": [
+      "skull-and-razor clip art",
+      "fake vintage sepia overlays on everything",
+      "loud 'MEN'S GROOMING' all-caps marketing"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "barber",
+      "barbershop",
+      "shave",
+      "fade",
+      "men's haircut"
+    ],
+    "interaction_kit": [
+      "scroll-reveal with diagonal clip-path masks (sharp, shop-floor feel)",
+      "hover underline with thick accent stroke on service links",
+      "hero with subtle grain texture overlay (CSS filter)",
+      "price rows: name goes accent-red on hover"
+    ]
+  },
+  "medspa": {
+    "palette": "medspa",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "services_price_menu",
+      "before_after_gallery",
+      "team_bio_row",
+      "testimonial_block",
+      "booking_cta_band",
+      "footer_standard"
+    ],
+    "tone": "luxury, editorial, soft minimalism",
+    "must_include": [
+      "service menu with treatment descriptions",
+      "before/after photos where legally permitted",
+      "medical director credentials",
+      "consultation booking link"
+    ],
+    "avoid": [
+      "over-the-top 'miracle results' claims",
+      "aggressive discount stickers"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "med spa",
+      "medspa",
+      "aesthetic",
+      "botox",
+      "laser",
+      "skin",
+      "filler",
+      "injector"
+    ],
+    "interaction_kit": [
+      "editorial fade+slide reveals (15-20px travel, 500ms ease) on every section",
+      "before/after slider in gallery (drag or arrow controls)",
+      "subtle scroll-linked blur-to-sharp on hero image",
+      "luxurious hover on service cards: minimal shift, accent border glow"
+    ]
+  },
+  "fitness-gym": {
+    "palette": "fitness-gym",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "class_schedule_grid",
+      "service_grid_3x",
+      "team_bio_row",
+      "testimonial_block",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "high-energy but not yelling; disciplined, community-driven",
+    "must_include": [
+      "class schedule or training options",
+      "trainer bios with certifications",
+      "first-week free / trial offer if scraped",
+      "membership tiers if scraped",
+      "hours (early morning matters)"
+    ],
+    "avoid": [
+      "shouty all-caps 'NO EXCUSES' typography",
+      "gym-bro stock photography",
+      "fake weight-loss before/after numbers"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "gym",
+      "fitness",
+      "crossfit",
+      "strength",
+      "training",
+      "personal trainer",
+      "boxing"
+    ],
+    "interaction_kit": [
+      "count-up stats on scroll (members, classes per week, years open)",
+      "hero video or image with scroll-linked zoom (1.0 to 1.1 over viewport)",
+      "class cards with kinetic hover: left accent border grows 0 to 4px, 2px shift right",
+      "marquee ticker of class types at the bottom of hero"
+    ]
+  },
+  "yoga-studio": {
+    "palette": "yoga-studio",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "class_schedule_grid",
+      "team_bio_row",
+      "testimonial_block",
+      "booking_cta_band",
+      "footer_standard"
+    ],
+    "tone": "calm, grounded, breath-forward; soft but not saccharine",
+    "must_include": [
+      "class schedule with levels",
+      "instructor bios with lineage/training",
+      "intro offer (first class free / $X for 2 weeks)",
+      "what to expect for beginners",
+      "studio ethos or philosophy line"
+    ],
+    "avoid": [
+      "new-age clip art (lotus flowers, chakras) as primary visual",
+      "stock photos of perfect poses on cliffsides",
+      "aggressive transformation marketing"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "yoga",
+      "pilates",
+      "meditation",
+      "studio",
+      "barre",
+      "vinyasa"
+    ],
+    "interaction_kit": [
+      "slow breathe ambient pulse on hero (opacity and scale, 6s loop)",
+      "scroll-reveal with long 600ms ease on every section",
+      "no count-ups, no marquees, no fast motion anywhere",
+      "instructor portraits fade in one at a time, 300ms stagger"
+    ]
+  },
+  "law-firm": {
+    "palette": "law-firm",
+    "recommended_layouts": [
+      "hero_split",
+      "practice_areas_grid",
+      "team_bio_row",
+      "case_results_strip",
+      "testimonial_block",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "authoritative, measured, plain-language; serious without being cold",
+    "must_include": [
+      "practice areas (only what's scraped)",
+      "attorney bios with bar admissions and years practicing",
+      "clear consultation CTA with 'free consultation' only if scraped",
+      "case results or settlements only with 'past results do not guarantee' disclaimer",
+      "office address (legal trust signal)"
+    ],
+    "avoid": [
+      "gavel and scales-of-justice clip art in hero",
+      "superhero-attorney marketing copy",
+      "guaranteed-outcome claims"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "law firm",
+      "attorney",
+      "lawyer",
+      "legal",
+      "counsel",
+      "esquire"
+    ],
+    "interaction_kit": [
+      "measured fade-in (400ms, no slide) on every section",
+      "stagger slow (150ms) on practice-area cards",
+      "count-up on case results strip (years practicing, cases won, dollars recovered)",
+      "no bouncy spring motion; authority means restraint"
+    ]
+  },
+  "auto-repair": {
+    "palette": "auto-repair",
+    "recommended_layouts": [
+      "hero_split",
+      "vehicle_services_grid",
+      "trust_badge_row",
+      "testimonial_block",
+      "service_area_map",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "capable, no-nonsense, shop-floor voice; honesty as a differentiator",
+    "must_include": [
+      "service categories matched to scraped work",
+      "ASE / AAA / manufacturer certifications if scraped",
+      "shop hours and phone prominent",
+      "warranty statement if scraped (e.g., '24 months / 24k miles')",
+      "loaner / shuttle policy if scraped"
+    ],
+    "avoid": [
+      "racing-stripe gradients",
+      "cartoon cars or sparkle graphics",
+      "vague 'we fix cars' copy without service specifics"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "auto",
+      "mechanic",
+      "repair shop",
+      "tire",
+      "brake",
+      "transmission",
+      "body shop",
+      "collision"
+    ],
+    "interaction_kit": [
+      "icon fill-on-hover for vehicle service cards (outline to solid)",
+      "scroll-reveal with industrial 350ms cubic-bezier",
+      "accent-orange left border grows on service card hover",
+      "trust-badge row slides in from right on scroll"
+    ]
+  },
+  "general-contractor": {
+    "palette": "general-contractor",
+    "recommended_layouts": [
+      "hero_full_bleed",
+      "service_grid_3x",
+      "before_after_gallery",
+      "trust_badge_row",
+      "testimonial_block",
+      "service_area_map",
+      "contact_cta_band",
+      "footer_standard"
+    ],
+    "tone": "builder's voice — craft, precision, on-budget delivery; not marketing polish",
+    "must_include": [
+      "project types (remodel, addition, new build, commercial)",
+      "portfolio / completed projects with real photos",
+      "license number and insurance statement",
+      "service area",
+      "estimate / consultation CTA"
+    ],
+    "avoid": [
+      "clip-art hard hats or blueprints as primary visual",
+      "generic 'quality you can trust' copy",
+      "before/after without real photos"
+    ],
+    "reference_urls": [],
+    "keywords": [
+      "contractor",
+      "general contractor",
+      "remodel",
+      "renovation",
+      "builder",
+      "construction",
+      "design build"
+    ],
+    "interaction_kit": [
+      "portfolio cards with scroll-reveal and 120ms stagger",
+      "before/after drag slider on featured project",
+      "hover on project card: deep shadow grows, subtle rotate 0.5deg",
+      "count-up on years in business or projects completed"
+    ]
+  }
+}

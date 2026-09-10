@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+{% block title %}Website Monitor - Summit Digital Solutions{% endblock %}
+{% block page_title %}Website Monitor{% endblock %}
+
+{% block topbar_actions %}
+<button class="btn btn-primary" id="wmAddWebsiteBtn" type="button">Add Website</button>
+{% endblock %}
+
+{% block content %}
+<div class="website-monitor" id="websiteMonitor">
+  <section class="wm-public-notice" aria-label="Monitoring scope">
+    <div>
+      <strong>Public-data website tracking</strong>
+      <span>Monitor SEO, search visibility, speed, and technical health for websites you own or observe.</span>
+    </div>
+    <p>Owned and observed labels organize your sites. Scans only use information that is publicly visible on the web.</p>
+  </section>
+
+  <section class="wm-provider-notice" id="wmProviderNotice" aria-label="Monitoring provider readiness" hidden></section>
+
+  <section class="wm-overview-grid" aria-label="Website monitoring overview">
+    <article class="stat-card wm-stat-card">
+      <div class="stat-label">Websites</div>
+      <div class="stat-value" id="wmSiteCount">--</div>
+      <div class="stat-sub">Actively tracked</div>
+    </article>
+    <article class="stat-card wm-stat-card">
+      <div class="stat-label">Owned</div>
+      <div class="stat-value" id="wmOwnedCount">--</div>
+      <div class="stat-sub">Your websites</div>
+    </article>
+    <article class="stat-card wm-stat-card">
+      <div class="stat-label">Observed</div>
+      <div class="stat-value" id="wmObservedCount">--</div>
+      <div class="stat-sub">Public comparisons</div>
+    </article>
+    <article class="stat-card wm-stat-card">
+      <div class="stat-label">Average Health</div>
+      <div class="stat-value" id="wmAverageHealth">--</div>
+      <div class="stat-sub">Latest completed scans</div>
+    </article>
+    <article class="stat-card wm-stat-card">
+      <div class="stat-label">Open Issues</div>
+      <div class="stat-value" id="wmOpenIssues">--</div>
+      <div class="stat-sub" id="wmScanSummary">No scans running</div>
+    </article>
+  </section>
+
+  <div class="wm-workspace">
+    <aside class="card wm-sites-panel" aria-label="Tracked websites">
+      <div class="card-header">
+        <span>Websites</span>
+        <button class="btn btn-secondary btn-sm" id="wmRefreshBtn" type="button">Refresh</button>
+      </div>
+      <div class="wm-site-tools">
+        <label class="wm-visually-hidden" for="wmSiteSearch">Search websites</label>
+        <input class="form-input" id="wmSiteSearch" type="search" placeholder="Search websites">
+        <label class="wm-visually-hidden" for="wmSiteTypeFilter">Filter website type</label>
+        <select class="form-select" id="wmSiteTypeFilter">
+          <option value="all">All websites</option>
+          <option value="owned">Owned</option>
+          <option value="observed">Observed</option>
+        </select>
+      </div>
+      <div class="wm-site-list" id="wmSiteList" aria-live="polite">
+        <div class="loading-overlay"><span class="spinner"></span> Loading websites...</div>
+      </div>
+    </aside>
+
+    <main class="wm-detail-column">
+      <section class="card wm-detail-empty" id="wmDetailEmpty">
+        <div class="empty-state">
+          <div class="empty-state-icon" aria-hidden="true">&#9673;</div>
+          <div class="empty-state-title">Select a website</div>
+          <p class="empty-state-text">Choose a tracked website to review its rankings, issues, and scan history.</p>
+        </div>
+      </section>
+
+      <div id="wmDetail" hidden>
+        <section class="card wm-detail-header">
+          <div class="wm-detail-heading">
+            <div class="wm-detail-title-row">
+              <div>
+                <div class="flex items-center gap-sm wm-detail-name-row">
+                  <h2 id="wmDetailName">Website</h2>
+                  <span class="badge badge-gray" id="wmDetailType">Observed</span>
+                </div>
+                <a id="wmDetailUrl" class="wm-detail-url" href="#" target="_blank" rel="noopener noreferrer"></a>
+              </div>
+              <div class="wm-detail-actions">
+                <button class="btn btn-secondary btn-sm" id="wmEditWebsiteBtn" type="button">Edit</button>
+                <button class="btn btn-secondary btn-sm wm-delete-button" id="wmDeleteWebsiteBtn" type="button">Delete</button>
+                <button class="btn btn-primary btn-sm" id="wmRunScanBtn" type="button">Run Scan</button>
+              </div>
+            </div>
+            <div class="wm-detail-meta" id="wmDetailMeta"></div>
+            <div class="wm-scan-status" id="wmScanStatus" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="wm-metrics-grid" aria-label="Latest website metrics">
+          <article class="card wm-metric-card">
+            <div class="wm-metric-label">Website Health</div>
+            <div class="wm-metric-primary">
+              <span class="wm-metric-value" id="wmHealthScore">--</span>
+              <span class="wm-metric-unit">/ 100</span>
+            </div>
+            <div class="wm-score-track" id="wmHealthTrack" role="progressbar" aria-label="Website health score" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="wmHealthBar"></span>
+            </div>
+            <div class="wm-metric-split">
+              <span>Technical <strong id="wmTechnicalScore">--</strong></span>
+              <span>SEO <strong id="wmSeoScore">--</strong></span>
+            </div>
+          </article>
+
+          <article class="card wm-metric-card">
+            <div class="wm-metric-label">Performance</div>
+            <div class="wm-metric-primary">
+              <span class="wm-metric-value" id="wmPerformanceScore">--</span>
+              <span class="wm-metric-unit">/ 100</span>
+            </div>
+            <div class="wm-score-track" id="wmPerformanceTrack" role="progressbar" aria-label="Performance score" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="wmPerformanceBar"></span>
+            </div>
+            <div class="wm-metric-caption" id="wmPerformanceCaption">Run a scan to measure public page performance.</div>
+          </article>
+
+          <article class="card wm-metric-card">
+            <div class="wm-metric-label">Search Visibility</div>
+            <div class="wm-metric-primary">
+              <span class="wm-metric-value" id="wmAverageRank">--</span>
+              <span class="wm-metric-unit">avg. rank</span>
+            </div>
+            <div class="wm-visibility-stats">
+              <span><strong id="wmTopTen">--</strong> Top 10</span>
+              <span><strong id="wmRankedKeywords">--</strong> Ranked</span>
+              <span><strong id="wmTotalKeywords">--</strong> Tracked</span>
+            </div>
+            <div class="wm-metric-caption" id="wmVisibilityCaption">Keyword results use the selected location and device.</div>
+          </article>
+        </section>
+
+        <section class="card wm-section-card">
+          <div class="card-header">
+            <div>
+              <span>Keyword Rankings</span>
+              <div class="wm-card-subtitle" id="wmRankingSubtitle">Latest public search positions</div>
+            </div>
+          </div>
+          <div class="card-body-flush table-container">
+            <table class="data-table wm-rankings-table">
+              <thead>
+                <tr>
+                  <th>Keyword</th>
+                  <th>Position</th>
+                  <th>Previous</th>
+                  <th>Change</th>
+                  <th>Ranking Page</th>
+                  <th>Visible Competitors</th>
+                </tr>
+              </thead>
+              <tbody id="wmRankingsBody">
+                <tr><td colspan="6"><div class="loading-overlay"><span class="spinner"></span> Loading rankings...</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="wm-lower-grid">
+          <section class="card wm-section-card">
+            <div class="card-header">
+              <div>
+                <span>Improvement Queue</span>
+                <div class="wm-card-subtitle">Prioritized public SEO and site issues</div>
+              </div>
+              <span class="badge badge-gray" id="wmIssueCount">0 open</span>
+            </div>
+            <div class="wm-issues-list" id="wmIssuesList"></div>
+          </section>
+
+          <section class="card wm-section-card">
+            <div class="card-header">
+              <div>
+                <span>Run History</span>
+                <div class="wm-card-subtitle">Results over time</div>
+              </div>
+            </div>
+            <div class="card-body-flush table-container">
+              <table class="data-table wm-history-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Health</th>
+                    <th>Performance</th>
+                    <th>Avg. Rank</th>
+                    <th>Ranked</th>
+                  </tr>
+                </thead>
+                <tbody id="wmHistoryBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <section class="card wm-keywords-card">
+          <div class="card-header">Tracking Configuration</div>
+          <div class="card-body">
+            <div class="wm-config-grid">
+              <div>
+                <div class="wm-config-label">Keywords</div>
+                <div class="wm-keyword-list" id="wmKeywordList"></div>
+              </div>
+              <div>
+                <div class="wm-config-label">Notes</div>
+                <p class="wm-notes" id="wmSiteNotes">No notes added.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="wm-modal-overlay" id="wmSiteModal" role="dialog" aria-modal="true" aria-labelledby="wmSiteModalTitle" hidden>
+    <div class="wm-modal-box wm-site-modal-box">
+      <form id="wmSiteForm" novalidate>
+        <div class="wm-modal-header">
+          <div>
+            <h2 id="wmSiteModalTitle">Add Website</h2>
+            <p>Configure public SEO and website performance tracking.</p>
+          </div>
+          <button class="wm-modal-close" type="button" data-wm-close="site" aria-label="Close">&times;</button>
+        </div>
+        <div class="wm-modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="wmSiteName">Website Name</label>
+              <input class="form-input" id="wmSiteName" name="name" autocomplete="organization" required placeholder="Summit Industries">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="wmSiteType">Tracking Type</label>
+              <select class="form-select" id="wmSiteType" name="site_type" required>
+                <option value="owned">Owned website</option>
+                <option value="observed">Observed website</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="wmSiteUrl">Website URL</label>
+            <input class="form-input" id="wmSiteUrl" name="url" type="url" inputmode="url" required placeholder="https://example.com">
+            <div class="wm-field-help">Use the public homepage URL. Only HTTP and HTTPS websites can be monitored.</div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="wmSiteLocation">Search Location</label>
+              <input class="form-input" id="wmSiteLocation" name="location" placeholder="Denver, Colorado">
+              <div class="wm-field-help">The market used for local keyword checks.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="wmSiteDevice">Search Device</label>
+              <select class="form-select" id="wmSiteDevice" name="device">
+                <option value="mobile">Mobile</option>
+                <option value="desktop">Desktop</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="wmSiteKeywords">Keywords</label>
+            <textarea class="form-textarea" id="wmSiteKeywords" name="keywords" rows="5" placeholder="commercial plumbing denver&#10;backflow testing denver"></textarea>
+            <div class="wm-field-help">Enter one keyword per line or separate keywords with commas.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="wmSiteNotesInput">Notes</label>
+            <textarea class="form-textarea" id="wmSiteNotesInput" name="notes" rows="3" placeholder="What this website is used for or what you want to compare"></textarea>
+          </div>
+          <div class="wm-type-explainer" id="wmTypeExplainer">
+            <strong>Owned website</strong>
+            <span>Marks the site as yours for organization. Monitoring still uses public website and search data.</span>
+          </div>
+          <div class="wm-form-error" id="wmSiteFormError" role="alert" hidden></div>
+        </div>
+        <div class="wm-modal-footer">
+          <button class="btn btn-secondary" type="button" data-wm-close="site">Cancel</button>
+          <button class="btn btn-primary" id="wmSaveSiteBtn" type="submit">Save Website</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="wm-modal-overlay" id="wmDeleteModal" role="alertdialog" aria-modal="true" aria-labelledby="wmDeleteTitle" aria-describedby="wmDeleteText" hidden>
+    <div class="wm-modal-box wm-delete-modal-box">
+      <div class="wm-modal-header">
+        <div>
+          <h2 id="wmDeleteTitle">Stop tracking this website?</h2>
+          <p id="wmDeleteText">This removes the website and its monitoring history.</p>
+        </div>
+        <button class="wm-modal-close" type="button" data-wm-close="delete" aria-label="Close">&times;</button>
+      </div>
+      <div class="wm-delete-warning">
+        <strong id="wmDeleteSiteName">Website</strong>
+        <span>This action cannot be undone.</span>
+      </div>
+      <div class="wm-modal-footer">
+        <button class="btn btn-secondary" type="button" data-wm-close="delete">Cancel</button>
+        <button class="btn btn-danger" id="wmConfirmDeleteBtn" type="button">Delete Website</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/website_monitor.js?v=1"></script>
+{% endblock %}

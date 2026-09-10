@@ -1,0 +1,15 @@
+{
+  "name": "cafe-bakery",
+  "primary": "#3B2A1A",
+  "accent": "#E89B3C",
+  "bg": "#FBF5E8",
+  "surface": "#F5EBD3",
+  "text": "#2A1F14",
+  "muted": "#7D6B53",
+  "border": "#E4D7BC",
+  "success": "#7A8B3B",
+  "warning": "#C46B2C",
+  "font_display": "Fraunces",
+  "font_body": "Nunito",
+  "notes": "Espresso brown + butter-yellow accent on warm oat. Handwritten-note tone without the literal script font. Fraunces adds a bakery-sign warmth; Nunito keeps body copy friendly and readable for hours/menus."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "plumber",
+  "primary": "#0B3D5C",
+  "accent": "#F59E0B",
+  "bg": "#FFFFFF",
+  "surface": "#F1F5F9",
+  "text": "#0B1B25",
+  "muted": "#475569",
+  "border": "#CBD5E1",
+  "success": "#15803D",
+  "warning": "#DC2626",
+  "font_display": "Barlow",
+  "font_body": "Inter",
+  "notes": "Navy + amber. High-contrast, industrial but not aggressive. Reads as competent trade service. Amber doubles as the 'call now' CTA color."
+}

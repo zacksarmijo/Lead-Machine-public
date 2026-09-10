@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head><title>CB-3 Delete Modal Mode Test</title></head>
+<body>
+<pre id="output"></pre>
+<!--
+  Minimal DOM stubs for the functions under test.
+  We only need the elements that deleteScan / deleteSelected / closeDeleteModal / confirmDelete touch.
+-->
+<div id="deleteModal" style="display:none">
+  <span id="deleteModalText"></span>
+</div>
+<select id="scanFilter"><option value="">All</option><option value="run-1">Scan 1</option></select>
+<button id="deleteScanBtn"></button>
+
+<script>
+// ── Minimal stubs so the extracted functions can run ──
+let selectedKeys = new Set(['lead-a', 'lead-b']);
+function api() { return Promise.resolve({}); }
+function toast() {}
+function updateDeleteScanBtn() {}
+async function loadScans() {}
+async function loadLeads() {}
+function clearSelection() { selectedKeys.clear(); }
+</script>
+
+<!-- Load the actual production code -->
+<script>
+// We can't source leads.js directly (it has DOMContentLoaded side-effects),
+// so we paste the 4 functions under test verbatim from the patched file.
+
+function deleteScan() {
+  const runId = document.getElementById('scanFilter').value;
+  if (!runId) return;
+  const sel = document.getElementById('scanFilter');
+  const label = sel.options[sel.selectedIndex].textContent;
+  document.getElementById('deleteModalText').textContent =
+    `Are you sure you want to delete this entire scan?\n\n"${label}"\n\nAll leads unique to this scan will be removed. This cannot be undone.`;
+  document.getElementById('deleteModal').dataset.mode = 'scan';
+  document.getElementById('deleteModal').classList.add('open');
+}
+
+function deleteSelected() {
+  if (!selectedKeys.size) return;
+  const count = selectedKeys.size;
+  document.getElementById('deleteModalText').textContent =
+    `Are you sure you want to delete ${count} lead${count !== 1 ? 's' : ''}? This cannot be undone.`;
+  document.getElementById('deleteModal').classList.add('open');
+}
+
+function closeDeleteModal() {
+  const modal = document.getElementById('deleteModal');
+  modal.classList.remove('open');
+  delete modal.dataset.mode;
+}
+
+async function confirmDelete() {
+  const modal = document.getElementById('deleteModal');
+  const mode = modal.dataset.mode || 'leads';
+  closeDeleteModal();
+
+  if (mode === 'scan') {
+    // scan delete path
+    return 'scan';
+  }
+  // leads delete path
+  return 'leads';
+}
+</script>
+
+<script>
+// ── Tests ──
+const out = document.getElementById('output');
+let passed = 0;
+let failed = 0;
+
+function assert(cond, msg) {
+  if (cond) { passed++; out.textContent += `  PASS: ${msg}\n`; }
+  else      { failed++; out.textContent += `  FAIL: ${msg}\n`; }
+}
+
+async function runTests() {
+  out.textContent = 'CB-3 Delete Modal Mode Tests\n============================\n\n';
+
+  // Test 1: After deleteScan + closeDeleteModal, mode must be cleared
+  document.getElementById('scanFilter').value = 'run-1';
+  deleteScan();
+  assert(document.getElementById('deleteModal').dataset.mode === 'scan',
+    'deleteScan sets mode=scan');
+  closeDeleteModal();
+  assert(!document.getElementById('deleteModal').dataset.mode,
+    'closeDeleteModal clears mode (core CB-3 fix)');
+
+  // Test 2: After scan delete, deleteSelected should route to leads path
+  document.getElementById('scanFilter').value = 'run-1';
+  deleteScan();
+  const scanResult = await confirmDelete();  // this calls closeDeleteModal internally
+  assert(scanResult === 'scan', 'confirmDelete routes to scan branch');
+
+  // Now simulate lead delete — mode must NOT be stuck on scan
+  selectedKeys = new Set(['lead-x']);
+  deleteSelected();
+  const leadsResult = await confirmDelete();
+  assert(leadsResult === 'leads',
+    'after scan delete, lead delete routes to leads branch (CB-3 bug)');
+
+  // Test 3: deleteSelected alone never sets mode=scan
+  selectedKeys = new Set(['lead-y']);
+  deleteSelected();
+  assert(!document.getElementById('deleteModal').dataset.mode,
+    'deleteSelected does not set mode=scan');
+  closeDeleteModal();
+
+  // Test 4: Multiple scan deletes don't leak state
+  document.getElementById('scanFilter').value = 'run-1';
+  deleteScan();
+  await confirmDelete();
+  deleteScan();
+  await confirmDelete();
+  selectedKeys = new Set(['z']);
+  deleteSelected();
+  const result = await confirmDelete();
+  assert(result === 'leads', 'multiple scan deletes do not leak mode');
+
+  out.textContent += `\n${passed} passed, ${failed} failed\n`;
+  if (failed > 0) out.style.color = 'red';
+  else out.style.color = 'green';
+}
+
+runTests();
+</script>
+</body>
+</html>

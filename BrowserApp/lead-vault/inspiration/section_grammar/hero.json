@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "section_type": "hero",
+  "moves": [
+    {
+      "key": "local_service_call_first",
+      "best_for": ["plumber", "roofer", "hvac", "electrician", "auto-repair"],
+      "requires": ["phone"],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["eyebrow", "h1", "subhead", "primary_cta", "secondary_cta", "trust_line"],
+      "layout_notes": ["Put phone or quote action in the first viewport.", "Use sturdy hierarchy and avoid vague hero copy."],
+      "conversion_notes": ["Primary action should be call, quote, schedule, or emergency help."],
+      "avoid": ["Hidden contact actions", "Generic welcome headline"]
+    },
+    {
+      "key": "gallery_led_visual_intro",
+      "best_for": ["landscaper", "salon-hair", "barber", "restaurant", "cafe-bakery"],
+      "requires": [],
+      "works_with_assets": ["photo"],
+      "content_slots": ["eyebrow", "h1", "subhead", "primary_cta", "image_caption", "proof_line"],
+      "layout_notes": ["Let one strong image or image group shape the hero.", "Keep text readable over or beside imagery."],
+      "conversion_notes": ["Primary action should connect to booking, menu, visit, or quote intent."],
+      "avoid": ["Claiming fallback images show real work"]
+    },
+    {
+      "key": "professional_authority_intro",
+      "best_for": ["law-firm", "realtor", "professional-services", "dentist", "chiropractor", "medspa"],
+      "requires": [],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["eyebrow", "h1", "subhead", "primary_cta", "secondary_cta", "credibility_line"],
+      "layout_notes": ["Use restrained composition with visible next step.", "Place trust or locality near the headline."],
+      "conversion_notes": ["CTA should be consultation, appointment, contact, or valuation language."],
+      "avoid": ["Unsupported guarantees", "Aggressive scarcity language"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "roofer",
+  "primary": "#283544",
+  "accent": "#B44A3A",
+  "bg": "#F6F3EE",
+  "surface": "#E6E1D6",
+  "text": "#1A2430",
+  "muted": "#5E6975",
+  "border": "#CFC9BA",
+  "success": "#3D7A5A",
+  "warning": "#D27A3A",
+  "font_display": "Oswald",
+  "font_body": "Inter",
+  "notes": "Slate roof-shingle + rust brick on weathered cream. Sturdy, storm-ready, Colorado-appropriate. Oswald condensed for masthead weight; Inter for insurance/warranty legibility. Avoid pure fire-truck red — the muted rust reads more craftsman, less Home-Depot-ad."
+}

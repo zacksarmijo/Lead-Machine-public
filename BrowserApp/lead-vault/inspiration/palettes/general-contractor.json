@@ -1,0 +1,15 @@
+{
+  "name": "general-contractor",
+  "primary": "#23272E",
+  "accent": "#D98C3B",
+  "bg": "#F5F2EC",
+  "surface": "#E5DFD0",
+  "text": "#1A1E24",
+  "muted": "#606A75",
+  "border": "#C9C0AD",
+  "success": "#4A7C3A",
+  "warning": "#C46B2C",
+  "font_display": "Archivo",
+  "font_body": "Inter",
+  "notes": "Charcoal + kraft-amber on blueprint cream. Builder's palette — measured, on-schedule, honest. Archivo's geometric squareness reads as drafting-table precision; Inter handles portfolio captions. No hard-hat clip art needed; the palette does the work."
+}

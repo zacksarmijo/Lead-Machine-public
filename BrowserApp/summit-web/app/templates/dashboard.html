@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Summit Digital Solutions{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="stats-grid" id="statsGrid">
+  <div class="stat-card"><div class="stat-label">Total Leads</div><div class="stat-value" id="statTotal">--</div></div>
+  <div class="stat-card"><div class="stat-label">Actionable</div><div class="stat-value" id="statActionable">--</div></div>
+  <div class="stat-card"><div class="stat-label">Pipeline Stages</div><div class="stat-value" id="statPipeline">--</div></div>
+  <div class="stat-card"><div class="stat-label">Web Buckets</div><div class="stat-value" id="statBuckets">--</div></div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">Pipeline Distribution</div>
+    <div class="card-body" id="pipelineList"><div class="loading-overlay"><span class="spinner"></span> Loading...</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header">Web Presence Buckets</div>
+    <div class="card-body" id="bucketList"><div class="loading-overlay"><span class="spinner"></span> Loading...</div></div>
+  </div>
+</div>
+
+<div class="card mt-md">
+  <div class="card-header">Recent Runs</div>
+  <div class="card-body-flush table-container">
+    <table class="data-table" id="runsTable">
+      <thead><tr><th>Date</th><th>Mode</th><th>Status</th><th>Leads</th></tr></thead>
+      <tbody id="runsBody"><tr><td colspan="4"><div class="loading-overlay"><span class="spinner"></span> Loading...</div></td></tr></tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

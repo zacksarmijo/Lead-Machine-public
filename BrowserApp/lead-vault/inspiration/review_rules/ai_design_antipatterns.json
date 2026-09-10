@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "key": "generic_headline",
+      "severity": "warning",
+      "phrases": ["transform your business", "welcome to", "experience excellence", "quality you can trust"],
+      "summary": "Generic headline language makes the page feel AI-generated."
+    },
+    {
+      "key": "weak_cta",
+      "severity": "warning",
+      "phrases": ["learn more", "get started", "discover more"],
+      "summary": "Primary CTAs should be specific to the business goal."
+    },
+    {
+      "key": "placeholder_copy",
+      "severity": "error",
+      "phrases": ["lorem ipsum", "your text here", "placeholder", "coming soon"],
+      "summary": "Placeholder copy must not ship in generated pages."
+    },
+    {
+      "key": "invented_metrics",
+      "severity": "warning",
+      "phrases": ["10,000+", "trusted by thousands", "award-winning", "guaranteed results"],
+      "summary": "Metrics and awards should not be invented."
+    }
+  ]
+}

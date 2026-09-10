@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "key": "healthcare-trust",
+  "label": "Healthcare Trust",
+  "best_for": ["dentist", "chiropractor", "medspa"],
+  "visual_principles": [
+    "Create calm confidence through clarity, cleanliness, and reassurance.",
+    "Show appointment paths and accepted-care details when available.",
+    "Keep claims conservative and evidence-based."
+  ],
+  "typography": {
+    "display": "soft serif or calm display sans",
+    "body": "high-legibility sans",
+    "tone": "reassuring, precise, warm"
+  },
+  "spacing": {
+    "density": "medium",
+    "section_padding": "generous",
+    "card_radius": "small"
+  },
+  "imagery": {
+    "priority": "office, team, equipment, clean interiors, patient-friendly visuals",
+    "fallback": "soft clinical surfaces"
+  },
+  "cta_rules": [
+    "Use appointment or consultation language.",
+    "Surface phone and booking paths early.",
+    "Avoid medical outcomes that are not present in source data."
+  ],
+  "section_rhythm": ["hero", "trust", "services", "proof", "conversion", "location", "footer"],
+  "avoid": [
+    "Fear-based urgency",
+    "Invented certifications or insurance claims",
+    "Dense clinical copy above the fold"
+  ]
+}

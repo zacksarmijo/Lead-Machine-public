@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "key": "visible_phone_when_known",
+      "severity": "warning",
+      "summary": "If a phone number exists, it should appear visibly and as a tel link."
+    },
+    {
+      "key": "contact_path_present",
+      "severity": "warning",
+      "summary": "Every generated local business page needs a clear contact path."
+    },
+    {
+      "key": "proof_before_final_cta",
+      "severity": "info",
+      "summary": "Proof or reassurance should appear before the final conversion section."
+    },
+    {
+      "key": "no_fake_locations",
+      "severity": "warning",
+      "summary": "Do not invent addresses, service towns, or hours."
+    }
+  ]
+}

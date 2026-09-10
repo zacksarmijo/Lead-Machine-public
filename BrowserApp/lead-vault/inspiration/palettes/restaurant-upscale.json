@@ -1,0 +1,15 @@
+{
+  "name": "restaurant-upscale",
+  "primary": "#0A0A0A",
+  "accent": "#B8934A",
+  "bg": "#F8F5EE",
+  "surface": "#EFE9DB",
+  "text": "#17120C",
+  "muted": "#6B6257",
+  "border": "#D8CEB7",
+  "success": "#4A7C3A",
+  "warning": "#A56A2C",
+  "font_display": "Cormorant Garamond",
+  "font_body": "Inter",
+  "notes": "Ink black + champagne gold on oyster. Editorial, spacious, hushed. Cormorant for serious serif gravitas; Inter for quiet body copy. Meant for sites that breathe — generous negative space, not packed layouts."
+}

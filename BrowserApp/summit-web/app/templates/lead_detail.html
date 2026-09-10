@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% block title %}Lead Detail - Summit Digital Solutions{% endblock %}
+{% block page_title %}<span id="leadTitle">Lead Detail</span>{% endblock %}
+{% block topbar_actions %}
+<a href="/leads" class="btn btn-secondary btn-sm">Back to Leads</a>
+{% endblock %}
+
+{% block content %}
+<div id="leadContent">
+  <div class="loading-overlay"><span class="spinner"></span> Loading lead...</div>
+</div>
+
+<template id="detailTemplate">
+<div class="flex gap-md mb-lg items-center">
+  <div>
+    <h2 class="mb-sm" id="detailName"></h2>
+    <div class="flex gap-sm items-center">
+      <span class="badge" id="detailBucket"></span>
+      <span class="badge" id="detailPipeline"></span>
+      <span class="text-sm" style="color:var(--text-secondary)">Opp:</span>
+      <span class="score" id="detailOppScore"></span>
+      <span class="text-sm" id="detailOppLabel" style="color:var(--text-secondary)"></span>
+      <span class="text-sm" style="color:var(--text-secondary);margin-left:0.5rem">Score:</span>
+      <span class="score" id="detailScore"></span>
+      <button class="btn btn-sm" id="pinToggleBtn" onclick="togglePin()">Pin</button>
+    </div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="tabOverview">Overview</button>
+  <button class="tab-btn" data-tab="tabGrading">Grading</button>
+  <button class="tab-btn" data-tab="tabAudit">Audit</button>
+  <button class="tab-btn" data-tab="tabWorkflow">Workflow</button>
+  <button class="tab-btn" data-tab="tabActivity">Activity</button>
+  <button class="tab-btn" data-tab="tabSimilar">Similar</button>
+</div>
+
+<!-- Overview -->
+<div class="tab-panel active" id="tabOverview">
+  <div class="card mb-md">
+    <div class="card-header">Business Information</div>
+    <div class="card-body">
+      <div class="detail-grid" id="overviewGrid"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Web Presence & Official Records</div>
+    <div class="card-body">
+      <div class="detail-grid" id="webGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Grading -->
+<div class="tab-panel" id="tabGrading">
+  <div id="gradingContainer">
+    <div class="loading-overlay"><span class="spinner"></span> Computing grades...</div>
+  </div>
+</div>
+
+<!-- Audit -->
+<div class="tab-panel" id="tabAudit">
+  <div class="card mb-md">
+    <div class="card-header flex justify-between items-center">
+      <span>Agent Review</span>
+      <button class="btn btn-secondary btn-sm" id="btnAgentReview" onclick="runAgentReview(true)">Run Agent Review</button>
+    </div>
+    <div class="card-body" id="agentReviewPanel">
+      <div class="text-muted text-sm" id="agentReviewEmpty">No agent review yet. Click &ldquo;Run Agent Review&rdquo; to analyze this lead.</div>
+      <div id="agentReviewContent" style="display:none">
+        <div class="detail-grid" id="agentReviewGrid"></div>
+        <div id="agentReviewReasons" style="margin-top:0.75rem"></div>
+        <div id="agentReviewRisks" style="margin-top:0.5rem"></div>
+        <div id="agentReviewMeta" class="text-sm text-muted" style="margin-top:0.5rem"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-md">
+    <div class="card-header">Website Evidence</div>
+    <div class="card-body">
+      <div class="detail-grid" id="auditEvidenceGrid"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Diagnostics</div>
+    <div class="card-body">
+      <div class="detail-grid" id="auditDiagGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Workflow -->
+<div class="tab-panel" id="tabWorkflow">
+  <div class="card mb-md">
+    <div class="card-header flex justify-between items-center">
+      <span>Workflow</span>
+      <div class="flex gap-sm items-center">
+        <button class="btn btn-secondary btn-sm" id="btnGenerate" onclick="generateDraft()">Generate AI Draft</button>
+        <button class="btn btn-sm" id="btnExportOutlook" onclick="openOutreachPreview()" style="background:#3b82f6;color:#fff;" disabled>Export to Outlook</button>
+        <button class="btn btn-primary btn-sm" onclick="saveWorkflow()">Save Changes</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-row mb-md">
+        <div class="form-group">
+          <label class="form-label">Pipeline Status</label>
+          <select class="form-select" id="wfPipeline">
+            <option>Needs review</option><option>Approved</option><option>Outreach-ready</option>
+            <option>Contacted</option><option>Responded</option><option>Do not contact</option><option>Archived</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lead Owner</label>
+          <input class="form-input" id="wfOwner" placeholder="Name or email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Next Action</label>
+        <input class="form-input" id="wfNextAction" placeholder="What to do next">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Opportunity Summary</label>
+        <textarea class="form-textarea" id="wfSummary" rows="3" placeholder="Internal summary of why this lead is worth pursuing..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Outreach Strategy</label>
+        <textarea class="form-textarea" id="wfStrategy" rows="3" placeholder="How to approach this lead..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Draft Message</label>
+        <textarea class="form-textarea" id="wfDraft" rows="5" placeholder="Outreach message draft..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Personalization Notes</label>
+        <textarea class="form-textarea" id="wfNotes" rows="2" placeholder="Notes specific to this lead..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Activity -->
+<div class="tab-panel" id="tabActivity">
+  <div class="card mb-md">
+    <div class="card-header">Add Activity</div>
+    <div class="card-body">
+      <div class="form-row mb-sm">
+        <div class="form-group">
+          <select class="form-select" id="actType">
+            <option>General</option><option>Review</option><option>Research</option>
+            <option>Website check</option><option>Call note</option><option>Email note</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input class="form-input" id="actSummary" placeholder="Brief summary">
+        </div>
+      </div>
+      <div class="form-group">
+        <textarea class="form-textarea" id="actDetails" rows="2" placeholder="Details (optional)"></textarea>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="addActivity()">Add Activity</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Activity Log</div>
+    <div class="card-body">
+      <ul class="activity-list" id="activityList">
+        <li class="text-muted" style="padding:16px;text-align:center;">No activity logged yet</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Similar -->
+<div class="tab-panel" id="tabSimilar">
+  <div class="card">
+    <div class="card-header flex justify-between items-center">
+      <span>Similar Leads</span>
+      <button class="btn btn-sm" id="pinAllSimilarBtn" onclick="pinAllSimilar()">&#128204; Pin All Similar</button>
+    </div>
+    <div class="card-body-flush table-container">
+      <table class="data-table">
+        <thead><tr><th>Business</th><th>City</th><th>Score</th><th>Match</th><th>Reasons</th></tr></thead>
+        <tbody id="similarBody">
+          <tr><td colspan="5"><div class="loading-overlay"><span class="spinner"></span> Loading...</div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</template>
+{% endblock %}
+
+{% block scripts %}
+<script>const LEAD_KEY = {{ lead_key | tojson }};</script>
+<script src="/static/js/website_grading.js?v=3"></script>
+<script src="/static/js/lead_detail.js?v=29"></script>
+
+<!-- Outreach Preview Modal -->
+<div class="outreach-modal-overlay" id="outreachModal" style="display:none">
+  <div class="outreach-modal">
+    <div class="outreach-modal-header">
+      <h3>Review Outreach Draft</h3>
+      <button class="outreach-modal-close" onclick="closeOutreachModal()">&times;</button>
+    </div>
+    <div class="outreach-modal-body">
+      <div class="form-group">
+        <label class="form-label">To</label>
+        <input class="form-input" id="outreachTo" placeholder="recipient@example.com">
+        <div class="text-sm text-muted" id="outreachToHint" style="margin-top:2px"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <input class="form-input" id="outreachSubject">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Body</label>
+        <textarea class="form-textarea" id="outreachBody" rows="10"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Preview Link <span class="text-muted text-sm">(optional)</span></label>
+        <input class="form-input" id="outreachPreviewUrl" placeholder="https://...">
+      </div>
+      <div id="outreachErrors" style="display:none" class="text-sm" style="color:var(--danger)"></div>
+    </div>
+    <div class="outreach-modal-footer">
+      <button class="btn btn-secondary btn-sm" onclick="closeOutreachModal()">Cancel</button>
+      <button class="btn btn-sm" id="btnDoExport" onclick="doExportOutlook()" style="background:#3b82f6;color:#fff;">Open in Outlook</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

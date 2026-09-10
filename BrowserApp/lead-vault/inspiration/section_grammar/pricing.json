@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "section_type": "pricing",
+  "moves": [
+    {
+      "key": "menu_or_pricing_when_scraped",
+      "best_for": ["restaurant", "cafe-bakery", "salon-hair", "barber", "fitness-gym", "yoga-studio"],
+      "requires": ["services"],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["pricing_heading", "items", "note", "cta"],
+      "layout_notes": ["Use only scraped item names or offering categories.", "If prices are absent, present offerings without prices."],
+      "conversion_notes": ["CTA should help visitors book, order, reserve, or ask."],
+      "avoid": ["Invented prices", "Invented menu items"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "law-firm",
+  "primary": "#0F2340",
+  "accent": "#A37D2F",
+  "bg": "#FAF7F1",
+  "surface": "#ECE5D5",
+  "text": "#0A1828",
+  "muted": "#5E6775",
+  "border": "#D4CBB5",
+  "success": "#2F6A4A",
+  "warning": "#A55B2A",
+  "font_display": "Playfair Display",
+  "font_body": "Inter",
+  "notes": "Deep navy + burnished bronze on ivory. Authority without pomposity. Playfair for serif gravitas that practice-areas grids deserve; Inter for bar-admission and case-result lists. Avoid black-and-gold — reads as marketing, not counsel."
+}

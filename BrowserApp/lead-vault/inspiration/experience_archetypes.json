@@ -1,0 +1,385 @@
+{
+  "_meta": {
+    "version": 1,
+    "phase": 3,
+    "description": "Trusted Summit experience archetypes. These describe the overall behavior, rhythm, and interaction style a generated website should use before individual sections are chosen.",
+    "depends_on": [
+      "motion_primitives.json"
+    ],
+    "runtime_target": "summit-motion-runtime",
+    "selection_rule": "Pick one primary archetype per generated site. Use category profiles as content guidance, not as the full visual recipe."
+  },
+  "archetypes": {
+    "premium_editorial": {
+      "label": "Premium Editorial",
+      "description": "A polished magazine-like experience with strong imagery, generous spacing, restrained reveals, and copy that feels curated rather than templated.",
+      "motion_level": "restrained",
+      "background_system": {
+        "type": "image_first",
+        "notes": "Use real scraped imagery whenever available. Background texture should be subtle and never compete with photography."
+      },
+      "scroll_system": {
+        "type": "paced_reveal",
+        "notes": "Sections should arrive with slow reveal timing and occasional image parallax on desktop."
+      },
+      "nav_system": {
+        "type": "minimal_sticky",
+        "notes": "Compact sticky nav with a clear booking or contact CTA. Avoid large multi-row nav."
+      },
+      "section_rhythm": [
+        "hero image plus editorial claim",
+        "proof or signature service",
+        "visual service menu",
+        "team or story section",
+        "gallery or social proof",
+        "quiet conversion band"
+      ],
+      "cta_system": {
+        "primary": "booking_or_contact",
+        "behavior": "Persistent but quiet. Use sticky CTA only when a real destination exists."
+      },
+      "recommended_primitives": [
+        "reveal_up",
+        "parallax_image",
+        "sticky_cta"
+      ],
+      "avoid_primitives": [
+        "cursor_spotlight"
+      ],
+      "best_for": [
+        "salon-hair",
+        "medspa",
+        "restaurant-upscale",
+        "realtor",
+        "general-contractor"
+      ],
+      "avoid_for": [
+        "plumber",
+        "hvac",
+        "electrician"
+      ],
+      "performance_budget": {
+        "max_animated_elements": 32,
+        "max_background_systems": 1,
+        "max_parallax_elements": 2,
+        "mobile_parallax_enabled": false,
+        "allow_pointer_tracking": false
+      },
+      "prompt_guidance": [
+        "Prioritize original scraped photos, team details, service names, and proof.",
+        "Use asymmetrical editorial layouts instead of uniform card grids whenever content supports it.",
+        "Keep motion quiet enough that the business still feels premium and trustworthy."
+      ]
+    },
+    "tech_launch": {
+      "label": "Tech Launch",
+      "description": "A modern product-launch feel with controlled ambient backgrounds, crisp proof blocks, sticky conversion, and a sense of interactive polish.",
+      "motion_level": "medium",
+      "background_system": {
+        "type": "ambient_gradient",
+        "notes": "Use one controlled animated gradient or spotlight hero system. Keep text contrast high."
+      },
+      "scroll_system": {
+        "type": "feature_steps",
+        "notes": "Use scroll reveals to introduce capabilities, outcomes, and proof as a sequence."
+      },
+      "nav_system": {
+        "type": "sticky_glass",
+        "notes": "Sticky nav may use blur or translucency if contrast remains readable."
+      },
+      "section_rhythm": [
+        "hero with clear offer",
+        "problem and outcome",
+        "feature or service sequence",
+        "proof metrics",
+        "process section",
+        "conversion band"
+      ],
+      "cta_system": {
+        "primary": "demo_quote_or_consultation",
+        "behavior": "Use sticky CTA after the hero and repeat the same action in the final band."
+      },
+      "recommended_primitives": [
+        "gradient_mesh",
+        "reveal_up",
+        "cursor_spotlight",
+        "sticky_cta"
+      ],
+      "avoid_primitives": [],
+      "best_for": [
+        "generic",
+        "electrician",
+        "hvac",
+        "auto-repair",
+        "fitness-gym"
+      ],
+      "avoid_for": [
+        "dentist",
+        "law-firm",
+        "yoga-studio",
+        "restaurant-upscale"
+      ],
+      "performance_budget": {
+        "max_animated_elements": 40,
+        "max_background_systems": 1,
+        "max_parallax_elements": 1,
+        "mobile_parallax_enabled": false,
+        "allow_pointer_tracking": true
+      },
+      "prompt_guidance": [
+        "Make the layout feel custom through sequencing, not by adding fake software language.",
+        "Use ambient effects only in one or two major areas.",
+        "Do not invent dashboards, apps, or product screenshots unless scraped content proves they exist."
+      ]
+    },
+    "local_service_conversion": {
+      "label": "Local Service Conversion",
+      "description": "A practical, high-trust service site focused on phone calls, fast comprehension, service area confidence, and above-the-fold conversion.",
+      "motion_level": "light",
+      "background_system": {
+        "type": "structured_plain",
+        "notes": "Prefer clean bands, mild texture, and service-relevant imagery over decorative animation."
+      },
+      "scroll_system": {
+        "type": "direct_reveal",
+        "notes": "Use short reveal timing to keep the page feeling fast and useful."
+      },
+      "nav_system": {
+        "type": "call_first_sticky",
+        "notes": "Phone, quote, or emergency action must stay easy to reach."
+      },
+      "section_rhythm": [
+        "hero with service and location",
+        "urgent CTA or trust strip",
+        "service grid",
+        "service area",
+        "reviews or credentials",
+        "contact form"
+      ],
+      "cta_system": {
+        "primary": "call_or_quote",
+        "behavior": "Sticky CTA is encouraged when a real phone number or quote destination exists."
+      },
+      "recommended_primitives": [
+        "reveal_up",
+        "sticky_cta"
+      ],
+      "avoid_primitives": [
+        "cursor_spotlight",
+        "parallax_image"
+      ],
+      "best_for": [
+        "plumber",
+        "roofer",
+        "hvac",
+        "electrician",
+        "auto-repair"
+      ],
+      "avoid_for": [
+        "restaurant-upscale",
+        "medspa",
+        "salon-hair"
+      ],
+      "performance_budget": {
+        "max_animated_elements": 24,
+        "max_background_systems": 0,
+        "max_parallax_elements": 0,
+        "mobile_parallax_enabled": false,
+        "allow_pointer_tracking": false
+      },
+      "prompt_guidance": [
+        "Do not bury the phone number or primary action.",
+        "Use motion only to improve scanning, never to create a splash-screen feeling.",
+        "Make services and service area concrete using scraped content."
+      ]
+    },
+    "gallery_led": {
+      "label": "Gallery Led",
+      "description": "A visual-first experience for businesses where proof lives in real work photos, projects, food, spaces, transformations, or portfolio imagery.",
+      "motion_level": "medium",
+      "background_system": {
+        "type": "photo_canvas",
+        "notes": "Let real imagery carry the visual system. Background animation should be secondary."
+      },
+      "scroll_system": {
+        "type": "image_reveal",
+        "notes": "Use staggered reveals and desktop parallax for selected large images."
+      },
+      "nav_system": {
+        "type": "simple_anchor",
+        "notes": "Navigation should help jump to gallery, services, story, and booking."
+      },
+      "section_rhythm": [
+        "immersive visual hero",
+        "featured work or signature menu",
+        "gallery cluster",
+        "service or category explanations",
+        "proof and reviews",
+        "booking or estimate CTA"
+      ],
+      "cta_system": {
+        "primary": "book_reserve_or_estimate",
+        "behavior": "CTA should appear after visual proof, with an optional sticky repeat on longer pages."
+      },
+      "recommended_primitives": [
+        "reveal_up",
+        "parallax_image",
+        "sticky_cta"
+      ],
+      "avoid_primitives": [
+        "cursor_spotlight",
+        "gradient_mesh"
+      ],
+      "best_for": [
+        "landscaper",
+        "restaurant",
+        "cafe-bakery",
+        "salon-hair",
+        "barber",
+        "general-contractor",
+        "fitness-gym"
+      ],
+      "avoid_for": [
+        "law-firm",
+        "dentist",
+        "plumber"
+      ],
+      "performance_budget": {
+        "max_animated_elements": 36,
+        "max_background_systems": 0,
+        "max_parallax_elements": 3,
+        "mobile_parallax_enabled": false,
+        "allow_pointer_tracking": false
+      },
+      "prompt_guidance": [
+        "Use actual scraped imagery as the main differentiator.",
+        "Avoid repeating equal-size card rows for every section.",
+        "Do not fabricate portfolio items, menu items, or before-and-after claims."
+      ]
+    },
+    "luxury_calm": {
+      "label": "Luxury Calm",
+      "description": "A serene, high-trust experience with minimal motion, careful whitespace, tactile details, and confidence through restraint.",
+      "motion_level": "minimal",
+      "background_system": {
+        "type": "soft_neutral",
+        "notes": "Use quiet background color, fine borders, and occasional soft gradients without active visual noise."
+      },
+      "scroll_system": {
+        "type": "slow_fade",
+        "notes": "Prefer fade or very small translate reveals with longer easing."
+      },
+      "nav_system": {
+        "type": "quiet_sticky",
+        "notes": "Sticky nav should feel calm and compact, with no flashing or pulsing CTA."
+      },
+      "section_rhythm": [
+        "calm hero",
+        "trust statement",
+        "service or treatment menu",
+        "team credentials",
+        "testimonials or proof",
+        "booking band"
+      ],
+      "cta_system": {
+        "primary": "booking_or_consultation",
+        "behavior": "Use repeated CTAs in natural positions instead of aggressive persistent prompts."
+      },
+      "recommended_primitives": [
+        "reveal_up"
+      ],
+      "avoid_primitives": [
+        "cursor_spotlight",
+        "gradient_mesh",
+        "sticky_cta"
+      ],
+      "best_for": [
+        "dentist",
+        "chiropractor",
+        "medspa",
+        "yoga-studio",
+        "law-firm",
+        "restaurant-upscale"
+      ],
+      "avoid_for": [
+        "plumber",
+        "roofer",
+        "fitness-gym"
+      ],
+      "performance_budget": {
+        "max_animated_elements": 22,
+        "max_background_systems": 0,
+        "max_parallax_elements": 0,
+        "mobile_parallax_enabled": false,
+        "allow_pointer_tracking": false
+      },
+      "prompt_guidance": [
+        "Make the site feel expensive through composition, spacing, and real detail.",
+        "Avoid loud color transitions, pulses, bounces, and busy decorative backgrounds.",
+        "Use fewer sections if the scraped content is thin."
+      ]
+    },
+    "utility_dashboard": {
+      "label": "Utility Dashboard",
+      "description": "A dense but polished operational layout for businesses that need clear comparison, schedules, services, locations, menus, or structured decision paths.",
+      "motion_level": "light",
+      "background_system": {
+        "type": "flat_structured",
+        "notes": "Use clear bands, tables, lists, and compact modules. Decorative motion should be almost absent."
+      },
+      "scroll_system": {
+        "type": "functional_reveal",
+        "notes": "Motion should only clarify grouping and hierarchy."
+      },
+      "nav_system": {
+        "type": "section_tabs_or_anchors",
+        "notes": "Tabs or anchor nav are appropriate when users need to compare content quickly."
+      },
+      "section_rhythm": [
+        "clear hero with decision path",
+        "quick actions",
+        "structured services or menu",
+        "schedule or hours",
+        "location and contact",
+        "FAQ or details"
+      ],
+      "cta_system": {
+        "primary": "quick_action",
+        "behavior": "Keep actions close to the relevant structured content."
+      },
+      "recommended_primitives": [
+        "reveal_up",
+        "sticky_cta"
+      ],
+      "avoid_primitives": [
+        "cursor_spotlight",
+        "parallax_image",
+        "gradient_mesh"
+      ],
+      "best_for": [
+        "restaurant",
+        "cafe-bakery",
+        "fitness-gym",
+        "auto-repair",
+        "generic"
+      ],
+      "avoid_for": [
+        "salon-hair",
+        "medspa",
+        "restaurant-upscale"
+      ],
+      "performance_budget": {
+        "max_animated_elements": 18,
+        "max_background_systems": 0,
+        "max_parallax_elements": 0,
+        "mobile_parallax_enabled": false,
+        "allow_pointer_tracking": false
+      },
+      "prompt_guidance": [
+        "Prefer scannable grouped content over oversized marketing sections.",
+        "Use compact cards, rows, and tabs only when they make repeated decisions easier.",
+        "Keep motion subtle so users can compare details without distraction."
+      ]
+    }
+  }
+}

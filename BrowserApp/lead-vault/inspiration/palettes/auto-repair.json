@@ -1,0 +1,15 @@
+{
+  "name": "auto-repair",
+  "primary": "#1A1D21",
+  "accent": "#E85D2C",
+  "bg": "#F2F3F5",
+  "surface": "#1F2328",
+  "text": "#1A1D21",
+  "muted": "#5C6773",
+  "border": "#2A2F36",
+  "success": "#3D9970",
+  "warning": "#F4A62A",
+  "font_display": "Oswald",
+  "font_body": "Inter",
+  "notes": "Graphite + safety orange on steel-white. Shop-floor honesty, diagnostic-ready. Dark surface panels for service-list cards work well against light bg. Oswald for punchy service headers; Inter for brake-pad and warranty specs."
+}

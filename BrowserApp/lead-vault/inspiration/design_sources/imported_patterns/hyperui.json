@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "source_key": "hyperui",
+  "patterns": [
+    {
+      "key": "split_hero_with_trust_row",
+      "summary": "Hero pairs a direct value proposition with a nearby proof row and two clear CTAs.",
+      "section_types": ["hero", "trust"],
+      "abstract_moves": [
+        "Place proof near the first CTA.",
+        "Keep secondary action lower-emphasis than primary action."
+      ]
+    },
+    {
+      "key": "faq_conversion_band",
+      "summary": "FAQ content sits close to a conversion band so objections and action happen together.",
+      "section_types": ["proof", "conversion"],
+      "abstract_moves": [
+        "Answer purchase friction before the final CTA.",
+        "Use concise answers instead of dense paragraphs."
+      ]
+    }
+  ]
+}

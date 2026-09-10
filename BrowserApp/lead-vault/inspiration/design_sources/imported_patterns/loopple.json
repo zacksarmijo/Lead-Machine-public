@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "source_key": "loopple-landings",
+  "patterns": [
+    {
+      "key": "local_business_homepage_stack",
+      "summary": "A local homepage usually needs hero, services, proof, location, and contact within one short path.",
+      "section_types": ["hero", "services", "proof", "location", "conversion"],
+      "abstract_moves": [
+        "Make location and contact visible before the footer.",
+        "Do not bury service-area information."
+      ]
+    },
+    {
+      "key": "appointment_business_path",
+      "summary": "Appointment businesses benefit from a repeated booking action and reassurance near form areas.",
+      "section_types": ["trust", "conversion"],
+      "abstract_moves": [
+        "Place booking cues near trust language.",
+        "Use one short form or contact path instead of competing forms."
+      ]
+    }
+  ]
+}

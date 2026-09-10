@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "section_type": "gallery",
+  "moves": [
+    {
+      "key": "visual_asset_gallery",
+      "best_for": ["landscaper", "restaurant", "restaurant-upscale", "cafe-bakery", "salon-hair", "barber", "fitness-gym", "yoga-studio"],
+      "requires": [],
+      "works_with_assets": ["photo"],
+      "content_slots": ["gallery_heading", "images", "captions", "gallery_cta"],
+      "layout_notes": ["Use asymmetric image sizing for polish.", "Keep captions factual and short."],
+      "conversion_notes": ["Follow gallery with a booking, menu, or quote action."],
+      "avoid": ["Repeating the same crop rhythm for every image"]
+    }
+  ]
+}

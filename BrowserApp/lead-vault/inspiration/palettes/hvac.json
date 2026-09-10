@@ -1,0 +1,15 @@
+{
+  "name": "hvac",
+  "primary": "#1D3557",
+  "accent": "#E76F51",
+  "bg": "#FBFAF7",
+  "surface": "#ECEFF2",
+  "text": "#0F1E2E",
+  "muted": "#556273",
+  "border": "#CDD5DE",
+  "success": "#2A9D8F",
+  "warning": "#CA5A2A",
+  "font_display": "Barlow",
+  "font_body": "Inter",
+  "notes": "Deep blue + warm terracotta — cool-and-heat metaphor baked into the palette without being on-the-nose. Soft teal-cast bg keeps it technical, not sterile. Barlow carries a service-tech feel; Inter keeps seasonal messaging legible."
+}

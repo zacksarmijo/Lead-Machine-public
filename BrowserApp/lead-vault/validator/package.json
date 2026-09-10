@@ -1,0 +1,14 @@
+{
+  "name": "lead-vault-validator",
+  "private": true,
+  "version": "1.0.0",
+  "description": "HTMLHint + pa11y wrappers used by lead_vault_website_validator.py to lint generated website mockups.",
+  "dependencies": {
+    "htmlhint": "^1.1.4",
+    "lighthouse": "^13.4.1",
+    "pa11y": "^10.0.0"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  }
+}

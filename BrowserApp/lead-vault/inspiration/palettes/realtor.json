@@ -1,0 +1,15 @@
+{
+  "name": "realtor",
+  "primary": "#1B4332",
+  "accent": "#B08968",
+  "bg": "#FAFAF7",
+  "surface": "#F1EDE4",
+  "text": "#14261D",
+  "muted": "#6C6F6A",
+  "border": "#D9D4C7",
+  "success": "#2F855A",
+  "warning": "#C05621",
+  "font_display": "Playfair Display",
+  "font_body": "Inter",
+  "notes": "Deep forest + warm brass. Premium and rooted. Display serif + body sans pairs well for editorial-feeling agent sites."
+}

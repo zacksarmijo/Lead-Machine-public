@@ -1,0 +1,15 @@
+{
+  "name": "dentist",
+  "primary": "#0E3B4D",
+  "accent": "#F4A58A",
+  "bg": "#F4F8FA",
+  "surface": "#E5EEF3",
+  "text": "#0E2430",
+  "muted": "#5B7382",
+  "border": "#C9D7E0",
+  "success": "#2A9D8F",
+  "warning": "#E07A5F",
+  "font_display": "DM Serif Display",
+  "font_body": "Inter",
+  "notes": "Deep teal + coral warmth on ice-blue. Breaks from the sterile cyan-everything dental cliché — coral adds human warmth, teal keeps clinical trust. DM Serif for approachable-but-serious headings."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "chiropractor",
+  "primary": "#1F3A2E",
+  "accent": "#9CAF88",
+  "bg": "#F6F4EE",
+  "surface": "#E8EDE0",
+  "text": "#1A2E23",
+  "muted": "#6C7766",
+  "border": "#D0D8C6",
+  "success": "#4E7A4A",
+  "warning": "#B76B43",
+  "font_display": "DM Serif Display",
+  "font_body": "Inter",
+  "notes": "Deep forest + soft sage on warm off-white. Wellness-clinical, evidence-based feel without going full spa. DM Serif gives confident-but-warm headings; Inter keeps conditions-treated lists scannable."
+}

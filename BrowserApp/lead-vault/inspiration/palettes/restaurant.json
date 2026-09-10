@@ -1,0 +1,15 @@
+{
+  "name": "restaurant",
+  "primary": "#1C1917",
+  "accent": "#C2410C",
+  "bg": "#FBF7F0",
+  "surface": "#F2EAD8",
+  "text": "#1C1917",
+  "muted": "#78716C",
+  "border": "#E7DFC9",
+  "success": "#65A30D",
+  "warning": "#B45309",
+  "font_display": "Fraunces",
+  "font_body": "Inter",
+  "notes": "Warm near-black + spice orange on a toasted-cream canvas. Reads as wood-fired, handmade, hospitality-first. Fraunces has organic letterforms that feel chef-driven; Inter for menu legibility at small sizes."
+}

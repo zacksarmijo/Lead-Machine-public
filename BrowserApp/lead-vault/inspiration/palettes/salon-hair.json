@@ -1,0 +1,15 @@
+{
+  "name": "salon-hair",
+  "primary": "#2B1B26",
+  "accent": "#C48A8A",
+  "bg": "#FAF5F2",
+  "surface": "#F0E4DE",
+  "text": "#1F1018",
+  "muted": "#7A6670",
+  "border": "#E2D2CC",
+  "success": "#6E8E5E",
+  "warning": "#B86A5A",
+  "font_display": "Canela",
+  "font_body": "Inter",
+  "notes": "Aubergine + dusty rose on pearl. Editorial-beauty feel without pink overload. Canela (or Cormorant as fallback) for elegant display headers; Inter keeps service menus neutral and scannable. Accent reads as intimate, not shouty."
+}

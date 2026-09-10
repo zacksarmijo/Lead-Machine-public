@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "section_type": "proof",
+  "moves": [
+    {
+      "key": "scraped_proof_points",
+      "best_for": ["generic", "plumber", "roofer", "hvac", "electrician", "dentist", "restaurant", "law-firm"],
+      "requires": [],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["proof_heading", "proof_items", "source_note"],
+      "layout_notes": ["Use factual scraped details as proof.", "If testimonials are absent, use process or service proof instead."],
+      "conversion_notes": ["Place proof before a major conversion section."],
+      "avoid": ["Invented reviews", "Invented client names", "Invented metrics"]
+    },
+    {
+      "key": "before_after_or_project_proof",
+      "best_for": ["landscaper", "general-contractor", "salon-hair", "barber", "auto-repair"],
+      "requires": [],
+      "works_with_assets": ["photo"],
+      "content_slots": ["project_heading", "image_grid", "caption", "cta"],
+      "layout_notes": ["Use visual evidence when photos exist.", "Caption images conservatively."],
+      "conversion_notes": ["Connect visual proof to estimate or booking action."],
+      "avoid": ["Stating images are client projects unless source data says so"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "barber",
+  "primary": "#0E0E0E",
+  "accent": "#8A1E1E",
+  "bg": "#F4F1EC",
+  "surface": "#E8E2D6",
+  "text": "#0E0E0E",
+  "muted": "#5C554B",
+  "border": "#CFC7B6",
+  "success": "#4E6B3A",
+  "warning": "#A84827",
+  "font_display": "Oswald",
+  "font_body": "Inter",
+  "notes": "Shop-black + oxblood on worn-paper cream. Craft-first, not kitschy vintage. Oswald condensed for masthead energy; Inter for clear price menus. Steer clear of sepia overlays — the palette already carries the shop-culture weight."
+}

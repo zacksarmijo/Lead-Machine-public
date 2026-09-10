@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "section_type": "conversion",
+  "moves": [
+    {
+      "key": "call_or_quote_final_cta",
+      "best_for": ["plumber", "roofer", "hvac", "electrician", "auto-repair", "general-contractor"],
+      "requires": ["phone"],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["cta_heading", "cta_copy", "phone_cta", "secondary_cta", "trust_note"],
+      "layout_notes": ["Make the final CTA visually distinct but not oversized.", "Keep phone action obvious on mobile."],
+      "conversion_notes": ["Use one decisive action path."],
+      "avoid": ["Weak final learn-more CTA"]
+    },
+    {
+      "key": "appointment_or_contact_panel",
+      "best_for": ["dentist", "chiropractor", "medspa", "law-firm", "professional-services", "realtor", "salon-hair", "barber"],
+      "requires": [],
+      "works_with_assets": ["photo", "no_photo"],
+      "content_slots": ["cta_heading", "cta_copy", "contact_options", "form_stub", "privacy_note"],
+      "layout_notes": ["Use a simple contact path and reassurance.", "Avoid asking for unnecessary fields."],
+      "conversion_notes": ["CTA should match consultation, appointment, or contact intent."],
+      "avoid": ["Long forms in the mockup"]
+    }
+  ]
+}

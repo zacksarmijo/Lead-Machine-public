@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "key": "one_visible_h1",
+      "severity": "warning",
+      "summary": "Generated pages should have exactly one clear H1."
+    },
+    {
+      "key": "primary_cta_above_fold",
+      "severity": "warning",
+      "summary": "Primary conversion action should be visible in the hero or first major section."
+    },
+    {
+      "key": "local_signal_present",
+      "severity": "warning",
+      "summary": "Local business pages should show business name and location or service area."
+    },
+    {
+      "key": "repeated_card_grid_limit",
+      "severity": "warning",
+      "summary": "Avoid too many repeated same-shaped card grids."
+    },
+    {
+      "key": "nested_cards",
+      "severity": "warning",
+      "summary": "Avoid card-inside-card composition unless it is a real nested tool."
+    }
+  ]
+}
